@@ -1,0 +1,14 @@
+@use 'variables';
+@use 'mixins';
+@use 'base';
+@use 'layout';
+
+// Components will be imported here
+@use 'components/navbar';
+@use 'components/buttons';
+@use 'components/hero';
+@use 'components/book-card';
+
+// Pages
+@use 'pages/home';
+@use 'pages/books';

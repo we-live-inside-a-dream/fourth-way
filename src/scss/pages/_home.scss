@@ -1,0 +1,19 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.home-section {
+    padding: $spacing-lg 0;
+
+    h2 {
+        text-align: center;
+        margin-bottom: $spacing-md;
+        font-size: 2.5rem;
+    }
+}
+
+.featured-books {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+}

@@ -1,0 +1,30 @@
+// Colors
+$color-primary: #2E1A47; // Deep Indigo
+$color-secondary: #C5A059; // Muted Gold
+$color-bg: #F9F7F2; // Cream/Paper
+$color-text: #333333;
+$color-text-light: #666666;
+$color-white: #ffffff;
+
+// Typography
+$font-family-serif: 'Playfair Display', serif;
+$font-family-sans: 'Lato', sans-serif;
+
+$font-size-base: 16px;
+$line-height-base: 1.6;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 8rem;
+
+// Breakpoints
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+
+// Shadows
+$shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
