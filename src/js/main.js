@@ -44,7 +44,7 @@ $(function () {
 
         // Dynamic Year Update (Persian numbers for FA)
         const year = new Date().getFullYear();
-        const yearText = lang === 'fa' ? year.toString().replace(/\d/g, d => '۰１２３４５６７８９'[d]) : year;
+        const yearText = lang === 'fa' ? year.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]) : year;
         $('.footer-year').text(yearText);
     }
 
