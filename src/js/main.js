@@ -46,6 +46,33 @@ $(function () {
         const year = new Date().getFullYear();
         const yearText = lang === 'fa' ? year.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]) : year;
         $('.footer-year').text(yearText);
+
+        // Render Book Details if on details page
+        const $detailsContainer = $('#book-details-container');
+        if ($detailsContainer.length) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookId = urlParams.get('id');
+            const bookData = translations[lang].details[bookId];
+
+            if (bookData) {
+                const html = `
+                    <div class="book-detail-card" style="display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div class="book-cover" style="margin-bottom: 2rem; width: 100%; max-width: 400px;">
+                            <img src="${bookData.image}" alt="${bookData.title}" style="width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                        </div>
+                        <h1 style="color: #2E1A47; margin-bottom: 0.5rem; text-align: center;">${bookData.title}</h1>
+                        <p class="author" style="color: #C5A059; font-style: italic; margin-bottom: 1.5rem;">${bookData.author}</p>
+                        <div class="description" style="line-height: 1.8; color: #333; margin-bottom: 2rem; text-align: justify;">
+                            <p>${bookData.description}</p>
+                        </div>
+                         <a href="${bookData.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${bookData.btnText}</a>
+                    </div>
+                `;
+                $detailsContainer.html(html);
+            } else {
+                $detailsContainer.html('<p style="text-align: center;">Book not found.</p>');
+            }
+        }
     }
 
     // Mobile Menu Toggle
@@ -67,4 +94,15 @@ $(function () {
             }, 1000);
         }
     });
+
+    // Hero Carousel Logic
+    const $carouselItems = $('.hero-carousel .carousel-item');
+    if ($carouselItems.length > 1) {
+        let currentIndex = 0;
+        setInterval(() => {
+            $carouselItems.eq(currentIndex).removeClass('active');
+            currentIndex = (currentIndex + 1) % $carouselItems.length;
+            $carouselItems.eq(currentIndex).addClass('active');
+        }, 5000); // Change every 5 seconds
+    }
 });

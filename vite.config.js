@@ -12,6 +12,7 @@ export default defineConfig({
         written: resolve(__dirname, 'src/books-written.html'),
         translated: resolve(__dirname, 'src/books-translated.html'),
         contact: resolve(__dirname, 'src/contact.html'),
+        bookDetails: resolve(__dirname, 'src/book-details.html'),
       },
     },
   },

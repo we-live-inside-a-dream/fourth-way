@@ -23,11 +23,55 @@
         color: $color-text-light;
     }
 
-    img {
+    .hero-carousel {
+        position: relative;
         width: 100%;
         height: 1000px;
-        object-fit: cover;
         margin-bottom: $spacing-md;
-        border-radius: 4px; // subtle polish
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: $shadow-card;
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+
+            &.active {
+                opacity: 1;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .caption {
+                position: absolute;
+                bottom: 20%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                text-align: center;
+                // Removed box styles as requested
+                // background-color: rgba(46, 26, 71, 0.7); 
+                // padding: $spacing-md;
+                // border: 1px solid $color-secondary;
+
+                h2 {
+                    color: $color-white;
+                    font-family: $font-family-serif;
+                    font-size: 2.5rem; // Increased size for impact
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); // Ensure readability
+                    margin: 0;
+                    margin-bottom: 0 !important; // override hero h1
+                }
+            }
+        }
     }
 }
