@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;700&display=swap"
         rel="stylesheet">
 </head>
 
@@ -20,10 +20,11 @@
                 <span>&#9776;</span>
             </button>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/books-written.html" class="active">Written Books</a></li>
-                <li><a href="/books-translated.html">Translated Books</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/" data-i18n="nav.home">Home</a></li>
+                <li><a href="/books-written.html" class="active" data-i18n="nav.written">Written Books</a></li>
+                <li><a href="/books-translated.html" data-i18n="nav.translated">Translated Books</a></li>
+                <li><a href="/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <li><button id="lang-toggle" class="btn btn-secondary" style="padding: 5px 10px;">FA</button></li>
             </ul>
         </nav>
     </header>
@@ -31,29 +32,31 @@
     <main>
         <header class="page-header">
             <div style="width: 90%; max-width: 1200px; margin: 0 auto;">
-                <h1>Original Works</h1>
-                <p>Spiritual insights and commentaries on the Work.</p>
+                <h1 data-i18n="pages.writtenTitle">Original Works</h1>
+                <p data-i18n="pages.writtenDesc">Spiritual insights and commentaries on the Work.</p>
             </div>
         </header>
 
         <section style="width: 90%; max-width: 1200px; margin: 0 auto;">
             <div class="books-grid">
                 <!-- Book 1 -->
-                <article class="book-card">
-                    <div class="book-cover">
-                        <img src="https://via.placeholder.com/300x450/2E1A47/ffffff?text=The+Inner+Path"
-                            alt="The Inner Path Cover">
-                    </div>
-                    <div class="book-info">
-                        <h3>The Inner Path</h3>
-                        <p class="author">By The Author</p>
-                        <p>A comprehensive guide to understanding self-observation and the principles of the Fourth Way
-                            in daily life.</p>
-                        <div class="actions">
-                            <a href="#" class="btn btn-details">Read More</a>
+                <a href="https://payhip.com/b/FY1c4" target="_blank" rel="noopener noreferrer"
+                    style="text-decoration: none; color: inherit; display: block;">
+                    <article class="book-card">
+                        <div class="book-cover">
+                            <img src="./assets/images/photo_2025-12-23 12.16.32.jpeg" alt="The Call of Silence Cover">
                         </div>
-                    </div>
-                </article>
+                        <div class="book-info">
+                            <h3 data-i18n="books.callTitle">The Call of Silence</h3>
+                            <p class="author" data-i18n="books.byAuthor">By The Author</p>
+                            <p data-i18n="books.callDesc">Reflections on awareness, inspiration, and intuition. A book
+                                inviting the reader to the direct experience of silence and presence.</p>
+                            <div class="actions">
+                                <span class="btn btn-details" data-i18n="pages.readMore">Read More</span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
 
                 <!-- Book 2 -->
                 <article class="book-card">
@@ -62,11 +65,12 @@
                             alt="Awakening Consciousness Cover">
                     </div>
                     <div class="book-info">
-                        <h3>Awakening Consciousness</h3>
-                        <p class="author">By The Author</p>
-                        <p>Exploring the mechanic of human behavior and the potential for spiritual awakening.</p>
+                        <h3 data-i18n="books.awakeningTitle">Awakening Consciousness</h3>
+                        <p class="author" data-i18n="books.byAuthor">By The Author</p>
+                        <p data-i18n="books.awakeningDesc">Exploring the mechanic of human behavior and the potential
+                            for spiritual awakening.</p>
                         <div class="actions">
-                            <a href="#" class="btn btn-details">Read More</a>
+                            <a href="#" class="btn btn-details" data-i18n="pages.readMore">Read More</a>
                         </div>
                     </div>
                 </article>
@@ -78,12 +82,13 @@
                             alt="Practical Work Cover">
                     </div>
                     <div class="book-info">
-                        <h3>Practical Work</h3>
-                        <p class="author">By The Author</p>
-                        <p>Specific exercises and practical applications of Gurdjieff's teachings for modern students.
+                        <h3 data-i18n="books.practicalTitle">Practical Work</h3>
+                        <p class="author" data-i18n="books.byAuthor">By The Author</p>
+                        <p data-i18n="books.practicalDesc">Specific exercises and practical applications of Gurdjieff's
+                            teachings for modern students.
                         </p>
                         <div class="actions">
-                            <a href="#" class="btn btn-details">Read More</a>
+                            <a href="#" class="btn btn-details" data-i18n="pages.readMore">Read More</a>
                         </div>
                     </div>
                 </article>
@@ -93,7 +98,8 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Fourth Way Books. All Rights Reserved.</p>
+            <p>&copy; <span class="footer-year"></span> <span data-i18n="footer.rights">Fourth Way Books. All Rights
+                    Reserved.</span></p>
         </div>
     </footer>
 

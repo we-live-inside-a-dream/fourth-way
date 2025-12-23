@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fourth Way Books | Spiritual Literature</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <header>
         <nav>
@@ -16,10 +20,11 @@
                 <span>&#9776;</span>
             </button>
             <ul class="nav-links">
-                <li><a href="/" class="active">Home</a></li>
-                <li><a href="/books-written.html">Written Books</a></li>
-                <li><a href="/books-translated.html">Translated Books</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="/books-written.html" data-i18n="nav.written">Written Books</a></li>
+                <li><a href="/books-translated.html" data-i18n="nav.translated">Translated Books</a></li>
+                <li><a href="/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <li><button id="lang-toggle" class="btn btn-secondary" style="padding: 5px 10px;">FA</button></li>
             </ul>
         </nav>
     </header>
@@ -27,32 +32,43 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Exploring the Fourth Way</h1>
-                <p>A collection of written and translated works dedicated to spiritual development, self-remembering, and the teachings of G.I. Gurdjieff.</p>
+                <h1 data-i18n="hero.title">Exploring the Fourth Way</h1>
+                <p data-i18n="hero.subtitle">A collection of written and translated works dedicated to spiritual
+                    development, self-remembering,
+                    and the teachings of G.I. Gurdjieff.</p>
                 <div class="hero-actions">
-                    <a href="/books-written.html" class="btn btn-primary">Browse Written Works</a>
-                    <a href="/books-translated.html" class="btn btn-secondary">Explore Translations</a>
+                    <a href="/books-written.html" class="btn btn-primary" data-i18n="hero.writtenBtn">Browse Written
+                        Works</a>
+                    <a href="/books-translated.html" class="btn btn-secondary" data-i18n="hero.translatedBtn">Explore
+                        Translations</a>
                 </div>
             </div>
         </section>
 
         <section class="home-section" style="text-align: center;">
             <div style="width: 90%; max-width: 1200px; margin: 0 auto;">
-                <h2>About the Author & Translator</h2>
-                <p style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.8;">
-                    Dedicated to preserving and expanding the knowledge of the Fourth Way, these works aim to bring clarity to the profound spiritual teachings of the 20th century. Through careful translation and original writing, we strive to make these transformative ideas accessible to the modern seeker.
+                <h2 data-i18n="home.aboutTitle">About the Author & Translator</h2>
+                <p data-i18n="home.aboutText"
+                    style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.8;">
+                    Dedicated to preserving and expanding the knowledge of the Fourth Way, these works aim to bring
+                    clarity to the profound spiritual teachings of the 20th century. Through careful translation and
+                    original writing, we strive to make these transformative ideas accessible to the modern seeker.
                 </p>
-                <img src="https://via.placeholder.com/800x400/2E1A47/ffffff?text=Spiritual+Journey" alt="Spiritual Journey" style="margin: 0 auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <img src="https://via.placeholder.com/800x400/2E1A47/ffffff?text=Spiritual+Journey"
+                    alt="Spiritual Journey"
+                    style="margin: 0 auto; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Fourth Way Books. All Rights Reserved.</p>
+            <p>&copy; <span class="footer-year"></span> <span data-i18n="footer.rights">Fourth Way Books. All Rights
+                    Reserved.</span></p>
         </div>
     </footer>
 
     <script type="module" src="./js/main.js"></script>
 </body>
+
 </html>

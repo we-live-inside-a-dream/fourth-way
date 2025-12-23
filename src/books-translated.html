@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;700&display=swap"
         rel="stylesheet">
 </head>
 
@@ -20,10 +20,11 @@
                 <span>&#9776;</span>
             </button>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/books-written.html">Written Books</a></li>
-                <li><a href="/books-translated.html" class="active">Translated Books</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/" data-i18n="nav.home">Home</a></li>
+                <li><a href="/books-written.html" data-i18n="nav.written">Written Books</a></li>
+                <li><a href="/books-translated.html" class="active" data-i18n="nav.translated">Translated Books</a></li>
+                <li><a href="/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <li><button id="lang-toggle" class="btn btn-secondary" style="padding: 5px 10px;">FA</button></li>
             </ul>
         </nav>
     </header>
@@ -31,8 +32,8 @@
     <main>
         <header class="page-header">
             <div style="width: 90%; max-width: 1200px; margin: 0 auto;">
-                <h1>Translations</h1>
-                <p>Bringing essential spiritual texts to a new audience.</p>
+                <h1 data-i18n="pages.translatedTitle">Translations</h1>
+                <p data-i18n="pages.translatedDesc">Bringing essential spiritual texts to a new audience.</p>
             </div>
         </header>
 
@@ -45,12 +46,13 @@
                             alt="Beelzebub's Tales Cover">
                     </div>
                     <div class="book-info">
-                        <h3>Beelzebub's Tales</h3>
-                        <p class="author">Original by G.I. Gurdjieff</p>
-                        <p>A fresh translation of Gurdjieff's magnum opus, aiming to clarify the objective critique of
+                        <h3 data-i18n="books.beelzebubTitle">Beelzebub's Tales</h3>
+                        <p class="author" data-i18n="books.originalBy">Original by G.I. Gurdjieff</p>
+                        <p data-i18n="books.beelzebubDesc">A fresh translation of Gurdjieff's magnum opus, aiming to
+                            clarify the objective critique of
                             the life of man.</p>
                         <div class="actions">
-                            <a href="#" class="btn btn-details">Read More</a>
+                            <a href="#" class="btn btn-details" data-i18n="pages.readMore">Read More</a>
                         </div>
                     </div>
                 </article>
@@ -62,12 +64,13 @@
                             alt="Meetings With Remarkable Men Cover">
                     </div>
                     <div class="book-info">
-                        <h3>Meetings With Remarkable Men</h3>
-                        <p class="author">Original by G.I. Gurdjieff</p>
-                        <p>The autobiography of Gurdjieff's search for truth, translated with attention to the cultural
+                        <h3 data-i18n="books.meetingsTitle">Meetings With Remarkable Men</h3>
+                        <p class="author" data-i18n="books.originalBy">Original by G.I. Gurdjieff</p>
+                        <p data-i18n="books.meetingsDesc">The autobiography of Gurdjieff's search for truth, translated
+                            with attention to the cultural
                             and spiritual context.</p>
                         <div class="actions">
-                            <a href="#" class="btn btn-details">Read More</a>
+                            <a href="#" class="btn btn-details" data-i18n="pages.readMore">Read More</a>
                         </div>
                     </div>
                 </article>
@@ -77,7 +80,8 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Fourth Way Books. All Rights Reserved.</p>
+            <p>&copy; <span class="footer-year"></span> <span data-i18n="footer.rights">Fourth Way Books. All Rights
+                    Reserved.</span></p>
         </div>
     </footer>
 

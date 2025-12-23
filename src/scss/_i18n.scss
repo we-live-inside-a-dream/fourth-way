@@ -1,0 +1,15 @@
+@use 'variables' as *;
+
+$direction: ltr;
+
+@mixin rtl {
+    [dir="rtl"] & {
+        @content;
+    }
+}
+
+@mixin ltr {
+    [dir="ltr"] & {
+        @content;
+    }
+}

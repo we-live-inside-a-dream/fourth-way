@@ -14,6 +14,10 @@ body {
     color: $color-text;
     font-size: $font-size-base;
     line-height: $line-height-base;
+
+    &[dir="rtl"] {
+        font-family: $font-family-fa;
+    }
 }
 
 h1,

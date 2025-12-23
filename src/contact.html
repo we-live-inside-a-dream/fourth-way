@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;700&display=swap"
         rel="stylesheet">
     <style>
         /* Simple internal style for contact form layout, as general styles handle most */
@@ -48,10 +48,11 @@
                 <span>&#9776;</span>
             </button>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/books-written.html">Written Books</a></li>
-                <li><a href="/books-translated.html">Translated Books</a></li>
-                <li><a href="/contact.html" class="active">Contact</a></li>
+                <li><a href="/" data-i18n="nav.home">Home</a></li>
+                <li><a href="/books-written.html" data-i18n="nav.written">Written Books</a></li>
+                <li><a href="/books-translated.html" data-i18n="nav.translated">Translated Books</a></li>
+                <li><a href="/contact.html" class="active" data-i18n="nav.contact">Contact</a></li>
+                <li><button id="lang-toggle" class="btn btn-secondary" style="padding: 5px 10px;">FA</button></li>
             </ul>
         </nav>
     </header>
@@ -59,8 +60,8 @@
     <main>
         <header class="page-header">
             <div style="width: 90%; max-width: 1200px; margin: 0 auto;">
-                <h1>Contact Us</h1>
-                <p>Get in touch for inquiries about books or translations.</p>
+                <h1 data-i18n="pages.contactTitle">Contact Us</h1>
+                <p data-i18n="pages.contactDesc">Get in touch for inquiries about books or translations.</p>
             </div>
         </header>
 
@@ -68,18 +69,18 @@
             <div style="width: 90%; margin: 0 auto;">
                 <form>
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name" data-i18n="contact.name">Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email" data-i18n="contact.email">Email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label for="message" data-i18n="contact.message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
                 </form>
             </div>
         </section>
@@ -87,7 +88,8 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Fourth Way Books. All Rights Reserved.</p>
+            <p>&copy; <span class="footer-year"></span> <span data-i18n="footer.rights">Fourth Way Books. All Rights
+                    Reserved.</span></p>
         </div>
     </footer>
 
