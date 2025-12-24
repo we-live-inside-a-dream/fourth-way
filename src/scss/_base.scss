@@ -1,5 +1,25 @@
 @use 'variables' as *;
 
+:root {
+    --color-primary: #2E1A47;
+    --color-secondary: #C5A059;
+    --color-bg: #F9F7F2;
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-white: #ffffff;
+    --shadow-opacity: 0.1;
+}
+
+[data-theme="dark"] {
+    --color-primary: #a38ec4; // Lighter Indigo for dark mode
+    --color-secondary: #d4b470; // Lighter Gold
+    --color-bg: #1a1025; // Dark Purple-Black
+    --color-text: #e0e0e0;
+    --color-text-light: #bbbbbb;
+    --color-white: #2d1f3f; // Dark Card Background
+    --shadow-opacity: 0.4;
+}
+
 *,
 *::before,
 *::after {

@@ -6,6 +6,22 @@ import { translations } from './translations.js';
 $(function () {
     console.log('Fourth Way Books - Initialized');
 
+    // Theme Handling
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(currentTheme);
+
+    $('#theme-toggle').on('click', function () {
+        const newTheme = $('html').attr('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    });
+
+    function setTheme(theme) {
+        $('html').attr('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        const iconClass = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+        $('#theme-toggle i').removeClass('fa-sun fa-moon').addClass(iconClass);
+    }
+
     // Language Handling
     const currentLang = localStorage.getItem('lang') || 'en';
     setLanguage(currentLang);

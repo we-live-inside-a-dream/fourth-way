@@ -1,10 +1,10 @@
 // Colors
-$color-primary: #2E1A47; // Deep Indigo
-$color-secondary: #C5A059; // Muted Gold
-$color-bg: #F9F7F2; // Cream/Paper
-$color-text: #333333;
-$color-text-light: #666666;
-$color-white: #ffffff;
+$color-primary: var(--color-primary); // Deep Indigo
+$color-secondary: var(--color-secondary); // Muted Gold
+$color-bg: var(--color-bg); // Cream/Paper
+$color-text: var(--color-text);
+$color-text-light: var(--color-text-light);
+$color-white: var(--color-white);
 
 // Typography
 $font-family-serif: 'Playfair Display', serif;
