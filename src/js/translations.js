@@ -86,7 +86,7 @@ export const translations = {
                 author: "Jeanne De Salzmann",
                 translator: "Babak Lotfikish",
                 description: "A definitive translation of Jeanne de Salzmann’s record of Gurdjieff’s wisdom, providing a clear and practical roadmap for those seeking to understand the objective reality of human life.",
-                image: "./assets/images/Screenshot 2025-12-23 at 22.50.50.png",
+                image: "./assets/images/in-search-of-being-cover.png",
                 link: "#",
                 btnText: "Coming Soon..."
             },
@@ -185,7 +185,7 @@ export const translations = {
                 author: "اثر جین دی سالزمن",
                 translator: "بابک لطفیکیش",
                 description: "ترجمه‌ای نهایی از مکتوبات ژان دو سالزمن درباره حکمت گورجیف؛ نقشه‌راهی روشن و عملی برای آنانی که در جستجوی درک واقعیت عینی حیات بشری هستند.",
-                image: "./assets/images/Screenshot 2025-12-23 at 22.50.50.png",
+                image: "./assets/images/in-search-of-being-cover.png",
                 link: "#",
                 btnText: "...به زودی"
             },
