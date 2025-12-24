@@ -81,7 +81,10 @@ $(function () {
                         <div class="description" style="line-height: 1.8; color: #333; margin-bottom: 2rem; text-align: justify;">
                             <p>${bookData.description}</p>
                         </div>
-                         <a href="${bookData.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${bookData.btnText}</a>
+                        ${(bookData.btnText === 'Coming Soon' || bookData.btnText === 'به زودی') ?
+                        `<span class="btn btn-primary disabled" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${bookData.btnText}</span>` :
+                        `<a href="${bookData.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${bookData.btnText}</a>`
+                    }
                     </div>
                 `;
                 $detailsContainer.html(html);

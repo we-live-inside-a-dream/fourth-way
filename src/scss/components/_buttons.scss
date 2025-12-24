@@ -42,4 +42,14 @@
             filter: brightness(1.1);
         }
     }
+
+    &.disabled,
+    &[disabled] {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+        background-color: #ccc;
+        border-color: #ccc;
+        color: #666;
+    }
 }
