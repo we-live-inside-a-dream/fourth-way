@@ -1,4 +1,4 @@
-import callCover from '../assets/images/photo_2025-12-23 12.16.32.jpeg';
+
 
 export const translations = {
     en: {
@@ -61,7 +61,7 @@ export const translations = {
                 title: "The Call of Silence",
                 author: "By The Author",
                 description: "The Call of Silence is a work centered on consciousness and self-discovery, inviting the reader to directly experience silence, presence, and inner observation. This work demonstrates that the deepest human insights emerge only when the mind grows quiet, allowing unmediated awareness to manifest. Along this path, the reader learns to observe the mind in the present moment and listen to inner guidance—a space where inspiration and intuition are recognized not as mystical concepts, but as natural aspects of daily life. Free from any specific school of thought or dogma, this book builds a bridge between the psychology of consciousness, the philosophy of presence, and the intuitive experience of the modern individual",
-                image: callCover,
+                image: "/assets/images/call-of-silence-cover.jpeg",
                 link: "https://payhip.com/b/FY1c4",
                 btnText: "Buy on Payhip"
             },
@@ -86,7 +86,7 @@ export const translations = {
                 author: "Jeanne De Salzmann",
                 translator: "Babak Lotfikish",
                 description: "A definitive translation of Jeanne de Salzmann’s record of Gurdjieff’s wisdom, providing a clear and practical roadmap for those seeking to understand the objective reality of human life.",
-                image: "./assets/images/in-search-of-being-cover.png",
+                image: "/assets/images/in-search-of-being-cover.png",
                 link: "#",
                 btnText: "Coming Soon..."
             },
@@ -160,7 +160,7 @@ export const translations = {
                 title: "ندای سکوت",
                 author: "نوشته نویسنده",
                 description: "«.ندای سکوت» کتابی در حوزهٔ آگاهی و خودشناسی است که خواننده را به تجربهٔ مستقیم سکوت، حضور و مشاهدهٔ درونی دعوت می‌کند.این اثر نشان می‌دهد که عمیق‌ترین دریافت‌های انسان زمانی پدیدار می‌شوند که ذهن آرام می‌گیرد و آگاهیِ بی‌واسطه مجال ظهور می‌یابد. خواننده در این مسیر می‌آموزد ذهن را در لحظهٔ اکنون مشاهده کند و به راهنمایی درونی گوش بسپارد؛ جایی که الهام و شهود نه به‌عنوان مفاهیمی رازآلود، بلکه به‌عنوان بخشی طبیعی از زندگی روزمره شناخته می‌شوند.این کتاب، بدون وابستگی به مکتب یا آیینی خاص، پلی میان روان‌شناسی آگاهی، فلسفهٔ حضور و تجربهٔ شهودی انسان معاصر می‌سازد",
-                image: callCover,
+                image: "/assets/images/call-of-silence-cover.jpeg",
                 link: "https://payhip.com/b/FY1c4",
                 btnText: "خرید در Payhip"
             },
@@ -185,7 +185,7 @@ export const translations = {
                 author: "اثر جین دی سالزمن",
                 translator: "بابک لطفیکیش",
                 description: "ترجمه‌ای نهایی از مکتوبات ژان دو سالزمن درباره حکمت گورجیف؛ نقشه‌راهی روشن و عملی برای آنانی که در جستجوی درک واقعیت عینی حیات بشری هستند.",
-                image: "./assets/images/in-search-of-being-cover.png",
+                image: "/assets/images/in-search-of-being-cover.png",
                 link: "#",
                 btnText: "...به زودی"
             },
