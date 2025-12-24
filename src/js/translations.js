@@ -43,18 +43,18 @@ export const translations = {
         books: {
             callTitle: "The Call of Silence",
             callDesc: "Reflections on awareness, inspiration, and intuition. A book inviting the reader to the direct experience of silence and presence.",
-            innerPathTitle: "The Inner Path",
-            innerPathDesc: "A comprehensive guide to understanding self-observation and the principles of the Fourth Way in daily life.",
-            byAuthor: "By The Author",
-            originalBy: "Original by G.I. Gurdjieff",
-            awakeningTitle: "Awakening Consciousness",
-            awakeningDesc: "Exploring the mechanic of human behavior and the potential for spiritual awakening.",
-            practicalTitle: "Practical Work",
-            practicalDesc: "Specific exercises and practical applications of Gurdjieff's teachings for modern students.",
-            beelzebubTitle: "Beelzebub's Tales",
-            beelzebubDesc: "A fresh translation of Gurdjieff's magnum opus, aiming to clarify the objective critique of the life of man.",
-            meetingsTitle: "Meetings With Remarkable Men",
-            meetingsDesc: "The autobiography of Gurdjieff's search for truth, translated with attention to the cultural and spiritual context."
+            // innerPathTitle: "The Inner Path",
+            // innerPathDesc: "A comprehensive guide to understanding self-observation and the principles of the Fourth Way in daily life.",
+            // byAuthor: "By The Author",
+            // originalBy: "Original by G.I. Gurdjieff",
+            // awakeningTitle: "Awakening Consciousness",
+            // awakeningDesc: "Exploring the mechanic of human behavior and the potential for spiritual awakening.",
+            // practicalTitle: "Practical Work",
+            // practicalDesc: "Specific exercises and practical applications of Gurdjieff's teachings for modern students.",
+            // beelzebubTitle: "Beelzebub's Tales",
+            // beelzebubDesc: "A fresh translation of Gurdjieff's magnum opus, aiming to clarify the objective critique of the life of man.",
+            // meetingsTitle: "Meetings With Remarkable Men",
+            // meetingsDesc: "The autobiography of Gurdjieff's search for truth, translated with attention to the cultural and spiritual context."
         },
         details: {
             callOfSilence: {
@@ -81,13 +81,14 @@ export const translations = {
                 link: "#",
                 btnText: "Coming Soon"
             },
-            beelzebub: {
-                title: "Beelzebub's Tales",
-                author: "Original by G.I. Gurdjieff",
-                description: "A fresh translation of Gurdjieff's magnum opus. This text aims to clarify the objective critique of the life of man, preserving the depth of the original.",
-                image: "https://via.placeholder.com/300x450/555555/ffffff?text=Beelzebub's+Tales",
+            inRealityOfBeing: {
+                title: "In Search of Being",
+                author: "Jeanne De Salzmann",
+                translator: "Babak Lotfikish",
+                description: "A definitive translation of Jeanne de Salzmann’s record of Gurdjieff’s wisdom, providing a clear and practical roadmap for those seeking to understand the objective reality of human life.",
+                image: "./assets/images/Screenshot 2025-12-23 at 22.50.50.png",
                 link: "#",
-                btnText: "Read Online"
+                btnText: "Coming Soon"
             },
             meetings: {
                 title: "Meetings With Remarkable Men",
@@ -185,7 +186,7 @@ export const translations = {
                 description: "ترجمه‌ای تازه از شاهکار گورجیف. این متن با هدف شفاف‌سازی نقد عینی زندگی بشر و حفظ عمق اثر اصلی نگاشته شده است.",
                 image: "https://via.placeholder.com/300x450/555555/ffffff?text=Beelzebub's+Tales",
                 link: "#",
-                btnText: "مطالعه آنلاین"
+                btnText: "به زودی"
             },
             meetings: {
                 title: "ملاقات با مردان برجسته",
