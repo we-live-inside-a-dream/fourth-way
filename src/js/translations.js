@@ -20,7 +20,10 @@ export const translations = {
             aboutText: "Dedicated to preserving and expanding the knowledge of the Fourth Way, these works aim to bring clarity to the profound spiritual teachings of the 20th century. Through careful translation and original writing, we strive to make these transformative ideas accessible to the modern seeker."
         },
         footer: {
-            rights: "Fourth Way Books. All Rights Reserved."
+            rights: "Fourth Way Books. All Rights Reserved.",
+            madeWith: "Made in Canada with",
+            by: "by",
+            author: "Reza Naeim"
         },
         pages: {
             writtenTitle: "Original Works",
@@ -115,7 +118,10 @@ export const translations = {
             aboutText: "با هدف حفظ و گسترش دانش راه چهارم، این آثار سعی در شفاف‌سازی آموزه‌های معنوی عمیق قرن بیستم دارند. از طریق ترجمه دقیق و تالیف اصیل، ما می‌کوشیم تا این ایده‌های تحول‌آفرین را برای جویندگان امروزی قابل دسترس کنیم."
         },
         footer: {
-            rights: "تمامی حقوق محفوظ است."
+            rights: "تمامی حقوق محفوظ است.",
+            madeWith: "ساخته شده در کانادا با",
+            by: "توسط",
+            author: "رضا نعیم"
         },
         pages: {
             writtenTitle: "آثار تالیفی",
