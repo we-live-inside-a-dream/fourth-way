@@ -88,7 +88,7 @@ export const translations = {
                 description: "A definitive translation of Jeanne de Salzmann’s record of Gurdjieff’s wisdom, providing a clear and practical roadmap for those seeking to understand the objective reality of human life.",
                 image: "./assets/images/Screenshot 2025-12-23 at 22.50.50.png",
                 link: "#",
-                btnText: "Coming Soon"
+                btnText: "Coming Soon..."
             },
             meetings: {
                 title: "Meetings With Remarkable Men",
@@ -180,13 +180,14 @@ export const translations = {
                 link: "#",
                 btnText: "به زودی"
             },
-            beelzebub: {
-                title: "قصه‌های بلزباب",
-                author: "اثر جی.آی. گورجیف",
-                description: "ترجمه‌ای تازه از شاهکار گورجیف. این متن با هدف شفاف‌سازی نقد عینی زندگی بشر و حفظ عمق اثر اصلی نگاشته شده است.",
-                image: "https://via.placeholder.com/300x450/555555/ffffff?text=Beelzebub's+Tales",
+            inRealityOfBeing: {
+                title: "واقعیت بودن",
+                author: "اثر جین دی سالزمن",
+                translator: "بابک لطفیکیش",
+                description: "ترجمه‌ای نهایی از مکتوبات ژان دو سالزمن درباره حکمت گورجیف؛ نقشه‌راهی روشن و عملی برای آنانی که در جستجوی درک واقعیت عینی حیات بشری هستند.",
+                image: "./assets/images/Screenshot 2025-12-23 at 22.50.50.png",
                 link: "#",
-                btnText: "به زودی"
+                btnText: "...به زودی"
             },
             meetings: {
                 title: "ملاقات با مردان برجسته",

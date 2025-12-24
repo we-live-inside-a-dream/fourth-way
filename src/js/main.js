@@ -76,12 +76,13 @@ $(function () {
                         <div class="book-cover" style="margin-bottom: 2rem; width: 100%; max-width: 400px;">
                             <img src="${bookData.image}" alt="${bookData.title}" style="width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
                         </div>
-                        <h1 style="color: #2E1A47; margin-bottom: 0.5rem; text-align: center;">${bookData.title}</h1>
-                        <p class="author" style="color: #C5A059; font-style: italic; margin-bottom: 1.5rem;">${bookData.author}</p>
-                        <div class="description" style="line-height: 1.8; color: #333; margin-bottom: 2rem; text-align: justify;">
+                        <h1 style="color: var(--color-primary); margin-bottom: 0.5rem; text-align: center;">${bookData.title}</h1>
+                        <p class="author" style="color: var(--color-secondary); font-style: italic; margin-bottom: 0.5rem;">${bookData.author}</p>
+                        ${bookData.translator ? `<p class="translator" style="color: var(--color-secondary); font-style: italic; margin-bottom: 1.5rem;">${lang === 'fa' ? 'مترجم: ' : 'Translator: '}${bookData.translator}</p>` : ''}
+                        <div class="description" style="line-height: 1.8; color: var(--color-text); margin-bottom: 2rem; text-align: justify;">
                             <p>${bookData.description}</p>
                         </div>
-                        ${(bookData.btnText === 'Coming Soon' || bookData.btnText === 'به زودی') ?
+                        ${(bookData.btnText === 'Coming Soon...' || bookData.btnText === '...به زودی') ?
                         `<span class="btn btn-primary disabled" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${bookData.btnText}</span>` :
                         `<a href="${bookData.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${bookData.btnText}</a>`
                     }
