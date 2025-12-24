@@ -3,7 +3,7 @@
 
 .hero {
     padding: 0 0 $spacing-xl;
-    background-color: #f4f1ea; // Slightly darker cream
+    background-color: var(--color-white);
     text-align: center;
 
     h1 {

@@ -126,7 +126,7 @@ $(function () {
 
 
                 const html = `
-                    <div class="book-detail-card" style="display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <div class="book-detail-card" style="display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto; background: var(--color-white); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                         <div class="book-cover" style="margin-bottom: 2rem; width: 100%; max-width: 400px;">
                             <img src="${bookData.image}" alt="${bookData.title}" style="width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
                         </div>
