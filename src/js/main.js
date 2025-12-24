@@ -71,6 +71,60 @@ $(function () {
             const bookData = translations[lang].details[bookId];
 
             if (bookData) {
+                // Update Page Title and Meta Tags
+                document.title = `${bookData.title} | Fourth Way Books`;
+
+                // Meta Description
+                let metaDesc = document.querySelector('meta[name="description"]');
+                if (!metaDesc) {
+                    metaDesc = document.createElement('meta');
+                    metaDesc.name = "description";
+                    document.head.appendChild(metaDesc);
+                }
+                metaDesc.content = bookData.description.substring(0, 160); // Limit to 160 chars for SEO
+
+                // OG Title
+                let ogTitle = document.querySelector('meta[property="og:title"]');
+                if (!ogTitle) {
+                    ogTitle = document.createElement('meta');
+                    ogTitle.setAttribute('property', 'og:title');
+                    document.head.appendChild(ogTitle);
+                }
+                ogTitle.content = bookData.title;
+
+                // OG Description
+                let ogDesc = document.querySelector('meta[property="og:description"]');
+                if (!ogDesc) {
+                    ogDesc = document.createElement('meta');
+                    ogDesc.setAttribute('property', 'og:description');
+                    document.head.appendChild(ogDesc);
+                }
+                ogDesc.content = bookData.description;
+
+                // OG Image
+                let ogImage = document.querySelector('meta[property="og:image"]');
+                if (!ogImage) {
+                    ogImage = document.createElement('meta');
+                    ogImage.setAttribute('property', 'og:image');
+                    document.head.appendChild(ogImage);
+                }
+                // Construct absolute URL for image if possible, or use relative
+                // Ensure image path is clean
+                let imagePath = bookData.image;
+                if (imagePath.startsWith('./')) {
+                    imagePath = imagePath.substring(2);
+                } else if (imagePath.startsWith('/')) {
+                    imagePath = imagePath.substring(1);
+                }
+
+                // If it's not an absolute URL, prepend domain
+                if (!imagePath.startsWith('http')) {
+                    ogImage.content = `https://babaklotfikish.com/${imagePath}`;
+                } else {
+                    ogImage.content = imagePath;
+                }
+
+
                 const html = `
                     <div class="book-detail-card" style="display: flex; flex-direction: column; align-items: center; max-width: 800px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                         <div class="book-cover" style="margin-bottom: 2rem; width: 100%; max-width: 400px;">
