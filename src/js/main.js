@@ -153,9 +153,17 @@ $(function () {
     const $menuToggle = $('#menu-toggle');
     const $navLinks = $('.nav-links');
 
-    $menuToggle.on('click', function () {
+    $menuToggle.on('click', function (e) {
+        e.stopPropagation();
         $navLinks.toggleClass('active');
         $(this).attr('aria-expanded', $navLinks.hasClass('active'));
+    });
+
+    $(document).on('click', function (e) {
+        if ($navLinks.hasClass('active') && !$(e.target).closest('.nav-links').length && !$(e.target).closest('#menu-toggle').length) {
+            $navLinks.removeClass('active');
+            $menuToggle.attr('aria-expanded', 'false');
+        }
     });
 
     // Smooth scrolling for anchor links
