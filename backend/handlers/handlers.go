@@ -9,6 +9,7 @@ import (
 	"fourth-way-backend/models"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -124,6 +125,34 @@ func (h *Handler) UpdateBook(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{"message": "Book updated successfully"})
+}
+
+// CreateBook adds a new book
+func (h *Handler) CreateBook(w http.ResponseWriter, r *http.Request) {
+    var book models.Book
+    if err := json.NewDecoder(r.Body).Decode(&book); err != nil {
+        http.Error(w, "Invalid request body", http.StatusBadRequest)
+        return
+    }
+
+    // Generate ID if not provided (though usually not provided for create)
+    if book.ID == "" {
+        book.ID = primitive.NewObjectID().Hex()
+    }
+
+    collection := h.Client.Database("fourthway").Collection("books")
+    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+    defer cancel()
+
+    _, err := collection.InsertOne(ctx, book)
+    if err != nil {
+        http.Error(w, "Database error: "+err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    w.WriteHeader(http.StatusCreated)
+    json.NewEncoder(w).Encode(book)
 }
 
 // UpdateHero updates the hero section

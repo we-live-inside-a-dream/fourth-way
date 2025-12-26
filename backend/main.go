@@ -73,7 +73,13 @@ func main() {
 		fmt.Fprintf(w, "OK")
 	}))
 
-    http.HandleFunc("/api/books", enableCORS(handler.GetBooks))
+    http.HandleFunc("/api/books", enableCORS(func(w http.ResponseWriter, r *http.Request) {
+        if r.Method == http.MethodPost {
+            handler.CreateBook(w, r)
+            return
+        }
+        handler.GetBooks(w, r)
+    }))
     
     // Handle specific book operations (e.g. PUT /api/books/{id})
     http.HandleFunc("/api/books/", enableCORS(func(w http.ResponseWriter, r *http.Request) {

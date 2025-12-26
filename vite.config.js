@@ -18,6 +18,7 @@ export default defineConfig({
         adminHero: resolve(__dirname, 'src/admin/hero.html'),
         adminBooks: resolve(__dirname, 'src/admin/books.html'),
         adminEditBook: resolve(__dirname, 'src/admin/edit-book.html'),
+        adminAddBook: resolve(__dirname, 'src/admin/add-book.html'),
       },
     },
   },

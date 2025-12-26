@@ -39,6 +39,7 @@ export const translations = {
                 dashboard: "Admin Dashboard",
                 manageBooks: "Manage Books",
                 editBook: "Edit Book",
+                addBook: "Add New Book",
                 editHero: "Edit Hero Section"
             },
             login: {
@@ -75,6 +76,7 @@ export const translations = {
             },
             common: {
                 save: "Save Changes",
+                add: "Add Book",
                 saving: "Saving...",
                 saved: "Saved successfully!",
                 failed: "Failed to save.",
@@ -122,6 +124,7 @@ export const translations = {
                 dashboard: "داشبورد مدیریت",
                 manageBooks: "مدیریت کتاب‌ها",
                 editBook: "ویرایش کتاب",
+                addBook: "افزودن کتاب جدید",
                 editHero: "ویرایش بخش هیرو"
             },
             login: {
@@ -158,6 +161,7 @@ export const translations = {
             },
             common: {
                 save: "ذخیره تغییرات",
+                add: "افزودن کتاب",
                 saving: "در حال ذخیره...",
                 saved: "با موفقیت ذخیره شد!",
                 failed: "خطا در ذخیره.",
