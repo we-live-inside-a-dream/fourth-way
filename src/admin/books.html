@@ -13,7 +13,7 @@
             margin: 0;
         }
 
-        header {
+        header.admin-header {
             background: #333;
             color: white;
             padding: 1rem;
@@ -22,19 +22,10 @@
             align-items: center;
         }
 
-        header a {
+        header.admin-header a {
             color: white;
             text-decoration: none;
             margin-left: 10px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .btn-logout {
@@ -88,11 +79,20 @@
             color: #777;
             padding: 2rem;
         }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
 <body>
-    <header>
+    <header class="admin-header">
         <h1 data-i18n="admin.titles.manageBooks">Admin Portal</h1>
         <div>
             <button id="lang-toggle"
