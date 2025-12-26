@@ -18,9 +18,9 @@ import (
 var client *mongo.Client
 var handler *handlers.Handler
 
-func enableCORS(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*") // Allow all origins for now
+func enableCORS(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
@@ -29,8 +29,8 @@ func enableCORS(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		next(w, r)
-	}
+		next.ServeHTTP(w, r)
+	})
 }
 
 func main() {
@@ -64,25 +64,28 @@ func main() {
 
 	// 2. Set up HTTP Server
     handler = &handlers.Handler{Client: client}
+    
+    // Use a new ServeMux for routing
+    mux := http.NewServeMux()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Welcome to the Fourth Way API!")
 	})
 
-	http.HandleFunc("/api/health", enableCORS(func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "OK")
-	}))
+	})
 
-    http.HandleFunc("/api/books", enableCORS(func(w http.ResponseWriter, r *http.Request) {
+    mux.HandleFunc("/api/books", func(w http.ResponseWriter, r *http.Request) {
         if r.Method == http.MethodPost {
             handler.CreateBook(w, r)
             return
         }
         handler.GetBooks(w, r)
-    }))
+    })
     
     // Handle specific book operations (e.g. PUT /api/books/{id})
-    http.HandleFunc("/api/books/", enableCORS(func(w http.ResponseWriter, r *http.Request) {
+    mux.HandleFunc("/api/books/", func(w http.ResponseWriter, r *http.Request) {
         if r.Method == http.MethodPut {
             handler.UpdateBook(w, r)
             return
@@ -92,16 +95,16 @@ func main() {
              return
         }
         http.NotFound(w, r)
-    }))
+    })
 
-    http.HandleFunc("/api/hero", enableCORS(func(w http.ResponseWriter, r *http.Request) {
+    mux.HandleFunc("/api/hero", func(w http.ResponseWriter, r *http.Request) {
         if r.Method == http.MethodPut {
             handler.UpdateHero(w, r)
             return
         }
         handler.GetHero(w, r)
-    }))
-    http.HandleFunc("/api/login", enableCORS(handler.Login))
+    })
+    mux.HandleFunc("/api/login", handler.Login)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -109,7 +112,9 @@ func main() {
 	}
 
 	fmt.Printf("Server starting on port %s...\n", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
+    
+    // Wrap the entire mux with CORS
+	if err := http.ListenAndServe(":"+port, enableCORS(mux)); err != nil {
 		log.Fatal(err)
 	}
 }
