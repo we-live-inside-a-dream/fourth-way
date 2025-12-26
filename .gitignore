@@ -19,3 +19,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Mongo
+mongo-local/
+backend/.env
