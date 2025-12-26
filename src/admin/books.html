@@ -93,44 +93,42 @@
 
 <body>
     <header>
-        <h1>Admin Portal</h1>
+        <h1 data-i18n="admin.titles.manageBooks">Admin Portal</h1>
         <div>
-            <a href="/admin/dashboard.html">Dashboard</a>
-            <a href="#" id="logout-btn">Logout</a>
+            <button id="lang-toggle"
+                style="background:none; border:1px solid white; color:white; cursor:pointer; margin-right:1rem; padding: 0.5rem 1rem; border-radius: 4px;">FA</button>
+            <a href="/admin/dashboard.html" data-i18n="admin.dashboard.backToDashboard">Dashboard</a>
+            <a href="#" id="logout-btn" data-i18n="admin.dashboard.logout">Logout</a>
         </div>
     </header>
 
     <div class="container">
-        <a href="/admin/dashboard.html" class="btn-back">&larr; Back to Dashboard</a>
-        <h2>Manage Books</h2>
+        <a href="/admin/dashboard.html" class="btn-back" data-i18n="admin.dashboard.backToDashboard">&larr; Back to
+            Dashboard</a>
+        <h2 data-i18n="admin.dashboard.manageBooks">Manage Books</h2>
 
         <table>
             <thead>
                 <tr>
-                    <th>Title (EN)</th>
-                    <th>Author (EN)</th>
-                    <th>Category</th>
-                    <th>Actions</th>
+                    <th data-i18n="admin.books.titleEn">Title (EN)</th>
+                    <th data-i18n="admin.books.authorEn">Author (EN)</th>
+                    <th data-i18n="admin.books.category">Category</th>
+                    <th data-i18n="admin.books.actions">Actions</th>
                 </tr>
             </thead>
             <tbody id="books-table-body">
                 <tr>
-                    <td colspan="4" class="loading">Loading books...</td>
+                    <td colspan="4" class="loading" data-i18n="admin.books.loading">Loading books...</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
+    <script type="module" src="../js/admin.js"></script>
     <script>
         const API_URL = 'http://localhost:8080/api';
 
-        // Auth Check
-        if (!localStorage.getItem('adminToken')) window.location.href = '/admin/login.html';
-        document.getElementById('logout-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('adminToken');
-            window.location.href = '/admin/login.html';
-        });
+        // Auth/Logout handled by admin.js
 
         async function loadBooks() {
             try {
@@ -150,19 +148,27 @@
                             <td>${author}</td>
                             <td style="text-transform: capitalize;">${book.category}</td>
                             <td>
-                                <a href="/admin/edit-book.html?id=${book.id}" class="btn-edit">Edit</a>
+                                <a href="/admin/edit-book.html?id=${book.id}" class="btn-edit" data-i18n="admin.books.edit">Edit</a>
                             </td>
                         </tr>
                    `;
                     tbody.insertAdjacentHTML('beforeend', row);
                 });
+
+                // Apply translations to dynamic content
+                if (window.admin && window.admin.applyTranslations) {
+                    window.admin.applyTranslations();
+                }
+
             } catch (err) {
                 console.error(err);
-                document.getElementById('books-table-body').innerHTML = '<tr><td colspan="4" style="color:red; text-align:center;">Failed to load books</td></tr>';
+                document.getElementById('books-table-body').innerHTML = '<tr><td colspan="4" style="color:red; text-align:center;" data-i18n="admin.books.loadFail">Failed to load books</td></tr>';
             }
         }
 
-        loadBooks();
+        // Wait for admin.js to load ideally, or just run. 
+        // admin.js runs on DOMContentLoaded. We can run this then too.
+        document.addEventListener('DOMContentLoaded', loadBooks);
     </script>
 </body>
 

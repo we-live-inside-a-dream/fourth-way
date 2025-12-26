@@ -68,37 +68,30 @@
 
 <body>
     <header>
-        <h1>Admin Dashboard</h1>
-        <button id="logout-btn" class="btn-logout">Logout</button>
+        <h1 data-i18n="admin.titles.dashboard">Admin Dashboard</h1>
+        <div>
+            <button id="lang-toggle"
+                style="background:none; border:1px solid white; color:white; cursor:pointer; margin-right:1rem; padding: 0.5rem 1rem; border-radius: 4px;">FA</button>
+            <button id="logout-btn" class="btn-logout" data-i18n="admin.dashboard.logout">Logout</button>
+        </div>
     </header>
 
     <div class="container">
         <div class="dashboard-grid">
             <div class="card">
-                <h3>Manage Books</h3>
-                <p>Edit details for Written and Translated books.</p>
-                <a href="/admin/books.html" class="btn-action">View Books</a>
+                <h3 data-i18n="admin.dashboard.manageBooks">Manage Books</h3>
+                <p data-i18n="admin.dashboard.manageBooksDesc">Edit details for Written and Translated books.</p>
+                <a href="/admin/books.html" class="btn-action" data-i18n="admin.dashboard.viewBooksBtn">View Books</a>
             </div>
             <div class="card">
-                <h3>Manage Hero Section</h3>
-                <p>Update the main hero text and buttons.</p>
-                <a href="/admin/hero.html" class="btn-action">Edit Hero</a>
+                <h3 data-i18n="admin.dashboard.manageHero">Manage Hero Section</h3>
+                <p data-i18n="admin.dashboard.manageHeroDesc">Update the main hero text and buttons.</p>
+                <a href="/admin/hero.html" class="btn-action" data-i18n="admin.dashboard.editHeroBtn">Edit Hero</a>
             </div>
         </div>
     </div>
 
-    <script>
-        // Check Auth
-        const token = localStorage.getItem('adminToken');
-        if (!token) {
-            window.location.href = '/admin/login.html';
-        }
-
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            localStorage.removeItem('adminToken');
-            window.location.href = '/admin/login.html';
-        });
-    </script>
+    <script type="module" src="../js/admin.js"></script>
 </body>
 
 </html>

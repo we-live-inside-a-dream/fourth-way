@@ -32,6 +32,56 @@ export const translations = {
             email: "Email",
             message: "Message",
             send: "Send Message"
+        },
+        admin: {
+            titles: {
+                login: "Admin Portal",
+                dashboard: "Admin Dashboard",
+                manageBooks: "Manage Books",
+                editBook: "Edit Book",
+                editHero: "Edit Hero Section"
+            },
+            login: {
+                username: "Username",
+                password: "Password",
+                loginBtn: "Login"
+            },
+            dashboard: {
+                manageBooks: "Manage Books",
+                manageBooksDesc: "Edit details for Written and Translated books.",
+                viewBooksBtn: "View Books",
+                manageHero: "Manage Hero Section",
+                manageHeroDesc: "Update the main hero text and buttons.",
+                editHeroBtn: "Edit Hero",
+                logout: "Logout",
+                backToDashboard: "Back to Dashboard",
+                backToBooks: "Back to Books"
+            },
+            books: {
+                titleEn: "Title (EN)",
+                authorEn: "Author (EN)",
+                category: "Category",
+                actions: "Actions",
+                edit: "Edit",
+                loading: "Loading books...",
+                loadFail: "Failed to load books"
+            },
+            hero: {
+                title: "Title",
+                subtitle: "Subtitle",
+                callCaption: "Call Caption",
+                writtenBtn: "Written Button Text",
+                translatedBtn: "Translated Button Text"
+            },
+            common: {
+                save: "Save Changes",
+                saving: "Saving...",
+                saved: "Saved successfully!",
+                failed: "Failed to save.",
+                error: "Error saving data.",
+                langEn: "English Content",
+                langFa: "Farsi Content"
+            }
         }
     },
     fa: {
@@ -65,6 +115,56 @@ export const translations = {
             email: "ایمیل",
             message: "پیام",
             send: "ارسال پیام"
+        },
+        admin: {
+            titles: {
+                login: "پرتال مدیریت",
+                dashboard: "داشبورد مدیریت",
+                manageBooks: "مدیریت کتاب‌ها",
+                editBook: "ویرایش کتاب",
+                editHero: "ویرایش بخش هیرو"
+            },
+            login: {
+                username: "نام کاربری",
+                password: "رمز عبور",
+                loginBtn: "ورود"
+            },
+            dashboard: {
+                manageBooks: "مدیریت کتاب‌ها",
+                manageBooksDesc: "ویرایش جزئیات کتاب‌های تالیفی و ترجمه شده.",
+                viewBooksBtn: "مشاهده کتاب‌ها",
+                manageHero: "مدیریت بخش هیرو",
+                manageHeroDesc: "بروزرسانی متن اصلی و دکمه‌ها.",
+                editHeroBtn: "ویرایش هیرو",
+                logout: "خروج",
+                backToDashboard: "بازگشت به داشبورد",
+                backToBooks: "بازگشت به کتاب‌ها"
+            },
+            books: {
+                titleEn: "عنوان (انگلیسی)",
+                authorEn: "نویسنده (انگلیسی)",
+                category: "دسته‌بندی",
+                actions: "عملیات",
+                edit: "ویرایش",
+                loading: "در حال بارگذاری...",
+                loadFail: "خطا در بارگذاری کتاب‌ها"
+            },
+            hero: {
+                title: "عنوان",
+                subtitle: "زیرعنوان",
+                callCaption: "عنوان کادر دعوت",
+                writtenBtn: "متن دکمه آثار تالیفی",
+                translatedBtn: "متن دکمه ترجمه‌ها"
+            },
+            common: {
+                save: "ذخیره تغییرات",
+                saving: "در حال ذخیره...",
+                saved: "با موفقیت ذخیره شد!",
+                failed: "خطا در ذخیره.",
+                error: "خطا در ذخیره داده‌ها.",
+                langEn: "محتوای انگلیسی",
+                langFa: "محتوای فارسی"
+            }
         }
     }
 };

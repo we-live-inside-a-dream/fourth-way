@@ -104,21 +104,23 @@
 
 <body>
     <header>
-        <h1>Admin Portal</h1>
+        <h1 data-i18n="admin.titles.editBook">Admin Portal</h1>
         <div>
-            <a href="/admin/dashboard.html">Dashboard</a>
-            <a href="#" id="logout-btn">Logout</a>
+            <button id="lang-toggle"
+                style="background:none; border:1px solid white; color:white; cursor:pointer; margin-right:1rem; padding: 0.5rem 1rem; border-radius: 4px;">FA</button>
+            <a href="/admin/dashboard.html" data-i18n="admin.dashboard.backToDashboard">Dashboard</a>
+            <a href="#" id="logout-btn" data-i18n="admin.dashboard.logout">Logout</a>
         </div>
     </header>
 
     <div class="container">
-        <a href="/admin/books.html" class="btn-back">&larr; Back to Books</a>
-        <h2>Edit Book</h2>
+        <a href="/admin/books.html" class="btn-back" data-i18n="admin.dashboard.backToBooks">&larr; Back to Books</a>
+        <h2 data-i18n="admin.titles.editBook">Edit Book</h2>
         <div id="msg" style="margin-bottom: 1rem; font-weight: bold;"></div>
 
         <form id="book-form">
             <div class="form-group">
-                <label>Category</label>
+                <label data-i18n="admin.books.category">Category</label>
                 <select name="category">
                     <option value="written">Written</option>
                     <option value="translated">Translated</option>
@@ -144,7 +146,7 @@
             </div>
 
             <div class="lang-section">
-                <h3>English Content</h3>
+                <h3 data-i18n="admin.common.langEn">English Content</h3>
                 <div class="form-group">
                     <label>Title</label>
                     <input type="text" name="title.en" required>
@@ -168,7 +170,7 @@
             </div>
 
             <div class="lang-section">
-                <h3>Farsi Content</h3>
+                <h3 data-i18n="admin.common.langFa">Farsi Content</h3>
                 <div class="form-group">
                     <label>Title (FA)</label>
                     <input type="text" name="title.fa" dir="rtl">
@@ -191,20 +193,15 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-submit">Save Changes</button>
+            <button type="submit" class="btn-submit" data-i18n="admin.common.save">Save Changes</button>
         </form>
     </div>
 
+    <script type="module" src="../js/admin.js"></script>
     <script>
         const API_URL = 'http://localhost:8080/api';
 
-        // Auth Check
-        if (!localStorage.getItem('adminToken')) window.location.href = '/admin/login.html';
-        document.getElementById('logout-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('adminToken');
-            window.location.href = '/admin/login.html';
-        });
+        // Auth/Logout handled by admin.js
 
         const urlParams = new URLSearchParams(window.location.search);
         const bookId = urlParams.get('id');
