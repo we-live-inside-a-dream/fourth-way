@@ -25,6 +25,8 @@ func main() {
     
     mongoURI := os.Getenv("MONGO_URI")
     if mongoURI == "" {
+        cwd, _ := os.Getwd()
+        log.Printf("MONGO_URI is empty. Current working directory: %s", cwd)
         mongoURI = "mongodb://localhost:27017"
     }
 
