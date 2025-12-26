@@ -135,6 +135,25 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    fmt.Println("Hero seeded successfully")
+	fmt.Println("Hero seeded successfully")
 
+	// Seed Admin User
+	usersColl := db.Collection("users")
+	admin := models.User{
+		Username: "admin",
+		Password: "password123", // Default password, change in production
+	}
+
+	// Check if admin exists
+	var existingAdmin models.User
+	err = usersColl.FindOne(ctx, map[string]interface{}{"username": "admin"}).Decode(&existingAdmin)
+	if err == mongo.ErrNoDocuments {
+		_, err = usersColl.InsertOne(ctx, admin)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("Admin user seeded successfully")
+	} else {
+		fmt.Println("Admin user already exists")
+	}
 }

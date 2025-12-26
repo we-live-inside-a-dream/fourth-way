@@ -46,7 +46,7 @@ func main() {
 		mongoURI = "mongodb://localhost:27017"
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	var err error
@@ -74,7 +74,28 @@ func main() {
 	}))
 
     http.HandleFunc("/api/books", enableCORS(handler.GetBooks))
-    http.HandleFunc("/api/hero", enableCORS(handler.GetHero))
+    
+    // Handle specific book operations (e.g. PUT /api/books/{id})
+    http.HandleFunc("/api/books/", enableCORS(func(w http.ResponseWriter, r *http.Request) {
+        if r.Method == http.MethodPut {
+            handler.UpdateBook(w, r)
+            return
+        }
+        if r.Method == http.MethodGet {
+             handler.GetBook(w, r)
+             return
+        }
+        http.NotFound(w, r)
+    }))
+
+    http.HandleFunc("/api/hero", enableCORS(func(w http.ResponseWriter, r *http.Request) {
+        if r.Method == http.MethodPut {
+            handler.UpdateHero(w, r)
+            return
+        }
+        handler.GetHero(w, r)
+    }))
+    http.HandleFunc("/api/login", enableCORS(handler.Login))
 
 	port := os.Getenv("PORT")
 	if port == "" {

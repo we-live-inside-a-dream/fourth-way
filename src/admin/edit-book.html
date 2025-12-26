@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book - Admin | Fourth Way Books</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 100px;
+        }
+
+        .btn-submit {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #218838;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #555;
+            text-decoration: none;
+        }
+
+        h2 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lang-section {
+            border: 1px solid #eee;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .lang-section h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Admin Portal</h1>
+        <div>
+            <a href="/admin/dashboard.html">Dashboard</a>
+            <a href="#" id="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="/admin/books.html" class="btn-back">&larr; Back to Books</a>
+        <h2>Edit Book</h2>
+        <div id="msg" style="margin-bottom: 1rem; font-weight: bold;"></div>
+
+        <form id="book-form">
+            <div class="form-group">
+                <label>Category</label>
+                <select name="category">
+                    <option value="written">Written</option>
+                    <option value="translated">Translated</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" name="image">
+            </div>
+
+            <div class="form-group">
+                <label>Buy Link / Details Link</label>
+                <input type="text" name="link">
+            </div>
+
+            <div class="form-group">
+                <label>Featured</label>
+                <select name="featured">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div class="lang-section">
+                <h3>English Content</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title.en" required>
+                </div>
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" name="author.en">
+                </div>
+                <div class="form-group">
+                    <label>Translator (Optional)</label>
+                    <input type="text" name="translator.en">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description.en"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" name="btnText.en">
+                </div>
+            </div>
+
+            <div class="lang-section">
+                <h3>Farsi Content</h3>
+                <div class="form-group">
+                    <label>Title (FA)</label>
+                    <input type="text" name="title.fa" dir="rtl">
+                </div>
+                <div class="form-group">
+                    <label>Author (FA)</label>
+                    <input type="text" name="author.fa" dir="rtl">
+                </div>
+                <div class="form-group">
+                    <label>Translator (FA)</label>
+                    <input type="text" name="translator.fa" dir="rtl">
+                </div>
+                <div class="form-group">
+                    <label>Description (FA)</label>
+                    <textarea name="description.fa" dir="rtl"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Button Text (FA)</label>
+                    <input type="text" name="btnText.fa" dir="rtl">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api';
+
+        // Auth Check
+        if (!localStorage.getItem('adminToken')) window.location.href = '/admin/login.html';
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('adminToken');
+            window.location.href = '/admin/login.html';
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookId = urlParams.get('id');
+
+        if (!bookId) {
+            document.querySelector('.container').innerHTML = '<p style="color:red">No book ID specified.</p>';
+            throw new Error("No ID");
+        }
+
+        const form = document.getElementById('book-form');
+        const msgDiv = document.getElementById('msg');
+        // We'll update form title to show ID if needed
+        document.querySelector('h2').textContent += ` (${bookId})`;
+
+        // Load Data
+        async function loadData() {
+            try {
+                // Fetch single book
+                const res = await fetch(`${API_URL}/books/${bookId}`);
+                if (!res.ok) throw new Error("Failed to fetch");
+                const data = await res.json();
+
+                // Helper to set value safely
+                const setVal = (name, val) => {
+                    const el = form.querySelector(`[name="${name}"]`);
+                    if (el) el.value = val || '';
+                };
+
+                setVal('category', data.category);
+                setVal('image', data.image);
+                setVal('link', data.link);
+                setVal('featured', data.featured);
+
+                if (data.title) { setVal('title.en', data.title.en); setVal('title.fa', data.title.fa); }
+                if (data.author) { setVal('author.en', data.author.en); setVal('author.fa', data.author.fa); }
+                if (data.translator) { setVal('translator.en', data.translator.en); setVal('translator.fa', data.translator.fa); }
+                if (data.description) { setVal('description.en', data.description.en); setVal('description.fa', data.description.fa); }
+                if (data.btnText) { setVal('btnText.en', data.btnText.en); setVal('btnText.fa', data.btnText.fa); }
+
+            } catch (e) {
+                console.error(e);
+                msgDiv.innerHTML = '<span style="color:red">Failed to load data</span>';
+            }
+        }
+
+        loadData();
+
+        // Submit
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            msgDiv.textContent = 'Saving...';
+
+            const formData = new FormData(form);
+            const getVal = (n) => formData.get(n);
+
+            const payload = {
+                id: bookId,
+                category: getVal('category'),
+                image: getVal('image'),
+                link: getVal('link'),
+                featured: getVal('featured') === 'true',
+                title: { en: getVal('title.en'), fa: getVal('title.fa') },
+                author: { en: getVal('author.en'), fa: getVal('author.fa') },
+                translator: { en: getVal('translator.en'), fa: getVal('translator.fa') },
+                description: { en: getVal('description.en'), fa: getVal('description.fa') },
+                btnText: { en: getVal('btnText.en'), fa: getVal('btnText.fa') },
+            };
+
+            try {
+                const res = await fetch(`${API_URL}/books/${bookId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    msgDiv.innerHTML = '<span style="color:green">Saved successfully!</span>';
+                } else {
+                    msgDiv.innerHTML = '<span style="color:red">Failed to save.</span>';
+                }
+            } catch (err) {
+                msgDiv.innerHTML = '<span style="color:red">Error saving data.</span>';
+            }
+        });
+    </script>
+</body>
+
+</html>
