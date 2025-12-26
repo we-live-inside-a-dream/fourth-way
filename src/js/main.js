@@ -1,5 +1,6 @@
 import '../scss/main.scss';
 import $ from 'jquery';
+import { API_URL } from './config.js';
 
 import { translations } from './translations.js';
 
@@ -114,7 +115,7 @@ $(function () {
     }
 
     // API Functions
-    const API_URL = 'http://localhost:8080/api';
+    // API Functions
 
     function loadHeroData(lang) {
         // Only load hero if we are on the home page (simplistic check)

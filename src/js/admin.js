@@ -1,6 +1,5 @@
 import { translations } from './translations.js';
-
-const API_URL = 'http://localhost:8080/api';
+import { API_URL } from './config.js';
 
 function initAdmin() {
     // Language Logic
