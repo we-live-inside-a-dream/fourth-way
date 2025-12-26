@@ -255,7 +255,7 @@ $(function () {
                 <div class="description" style="line-height: 1.8; color: var(--color-text); margin-bottom: 2rem; text-align: justify;">
                     <p>${desc}</p>
                 </div>
-                ${(btnText === 'Coming Soon...' || btnText === '...به زودی' || btnText == 'Coming Soon' || btnText == 'به زودی') ?
+                ${(btnText === 'Coming Soon...' || btnText === 'به زودی' || btnText == 'Coming Soon' || btnText == 'به زودی') ?
                 `<span class="btn btn-primary disabled" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${btnText}</span>` :
                 `<a href="${book.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${btnText}</a>`
             }
