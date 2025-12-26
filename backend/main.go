@@ -18,6 +18,21 @@ import (
 var client *mongo.Client
 var handler *handlers.Handler
 
+func enableCORS(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*") // Allow all origins for now
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next(w, r)
+	}
+}
+
 func main() {
 	// 0. Load .env file
 	if err := godotenv.Load(); err != nil {
@@ -54,12 +69,12 @@ func main() {
 		fmt.Fprintf(w, "Welcome to the Fourth Way API!")
 	})
 
-	http.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/api/health", enableCORS(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "OK")
-	})
+	}))
 
-    http.HandleFunc("/api/books", handler.GetBooks)
-    http.HandleFunc("/api/hero", handler.GetHero)
+    http.HandleFunc("/api/books", enableCORS(handler.GetBooks))
+    http.HandleFunc("/api/hero", enableCORS(handler.GetHero))
 
 	port := os.Getenv("PORT")
 	if port == "" {
