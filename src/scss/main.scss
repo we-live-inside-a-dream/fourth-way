@@ -11,5 +11,6 @@
 @use 'components/book-card';
 
 // Pages
+@use 'components/toast';
 @use 'pages/home';
 @use 'pages/books';

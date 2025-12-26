@@ -252,7 +252,10 @@
         // Submit
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            msgDiv.textContent = 'Saving...';
+            const saveBtn = form.querySelector('.btn-submit');
+            const originalText = saveBtn.textContent;
+            saveBtn.textContent = 'Saving...';
+            saveBtn.disabled = true;
 
             const formData = new FormData(form);
             const getVal = (n) => formData.get(n);
@@ -278,12 +281,15 @@
                 });
 
                 if (res.ok) {
-                    msgDiv.innerHTML = '<span style="color:green">Saved successfully!</span>';
+                    window.admin.showToast('Saved successfully!', 'success');
                 } else {
-                    msgDiv.innerHTML = '<span style="color:red">Failed to save.</span>';
+                    window.admin.showToast('Failed to save.', 'error');
                 }
             } catch (err) {
-                msgDiv.innerHTML = '<span style="color:red">Error saving data.</span>';
+                window.admin.showToast('Error saving data.', 'error');
+            } finally {
+                saveBtn.textContent = originalText;
+                saveBtn.disabled = false;
             }
         });
     </script>

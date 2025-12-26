@@ -65,6 +65,53 @@ function initAdmin() {
             });
         }
     }
+
+
+    // Toast Logic
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        // Force reflow
+        void toast.offsetWidth;
+
+        requestAnimationFrame(() => {
+            toast.classList.add('show');
+        });
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        }, 3000);
+    }
+
+    // Expose utils
+    window.admin = {
+        applyTranslations: () => {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let text = translations[lang];
+                keys.forEach(k => {
+                    if (text) text = text[k];
+                });
+
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                }
+            });
+        },
+        getLang: () => lang,
+        showToast: showToast
+    };
 }
 
 // Run on load
