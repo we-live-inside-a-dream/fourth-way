@@ -1,6 +1,6 @@
 module fourth-way-backend
 
-go 1.25.0
+go 1.22
 
 require go.mongodb.org/mongo-driver v1.17.6
 
