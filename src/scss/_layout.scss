@@ -83,4 +83,7 @@ footer {
 //     70% {
 //         transform: scale(1);
 //     }
-// }
+// Utility Classes
+.container {
+    @include container;
+}
