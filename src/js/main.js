@@ -143,7 +143,24 @@ $(function () {
                 // Update About Section
                 if (data.aboutTitle) $('h2[data-i18n="home.aboutTitle"]').text(getText(data.aboutTitle));
                 if (data.aboutText) $('p[data-i18n="home.aboutText"]').text(getText(data.aboutText));
-                if (data.aboutImage) $('#about-image').attr('src', data.aboutImage);
+
+                // Update Carousel
+                if (data.aboutImages && data.aboutImages.length) {
+                    const track = $('#about-carousel-track');
+                    track.empty();
+
+                    // Duplicate set for seamless scrolling
+                    // 6 sets to ensure we cover enough width for the animation
+                    const repeatCount = 6;
+                    const images = [];
+                    for (let i = 0; i < repeatCount; i++) {
+                        images.push(...data.aboutImages);
+                    }
+
+                    images.forEach(url => {
+                        track.append(`<img src="${url}" alt="Gallery Image">`);
+                    });
+                }
             },
             error: function (err) {
                 console.error("Failed to fetch hero data:", err);

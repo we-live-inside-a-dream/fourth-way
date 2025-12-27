@@ -2,18 +2,70 @@
 @use '../mixins' as *;
 
 .home-section {
-    padding: $spacing-lg 0;
+    padding: 4rem 0;
 
+    // Existing styles might be inline or global, moving specific ones here
     h2 {
-        text-align: center;
-        margin-bottom: $spacing-md;
-        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
     }
 }
 
-.featured-books {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: $spacing-md;
-    margin-top: $spacing-md;
+.about-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2rem;
+    position: relative;
+
+    // Fade effect on edges
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    &::before {
+        left: 0;
+        background: linear-gradient(to right, var(--bg-color), transparent);
+    }
+
+    &::after {
+        right: 0;
+        background: linear-gradient(to left, var(--bg-color), transparent);
+    }
+}
+
+.about-carousel-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+
+    img {
+        height: 300px;
+        width: auto; // Mantain aspect ratio
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%); // Assuming we duplicate sets so -50% is one full set
+    }
 }

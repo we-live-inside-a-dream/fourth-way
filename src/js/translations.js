@@ -87,7 +87,8 @@ export const translations = {
                 aboutSection: "About Section",
                 aboutTitle: "About Title",
                 aboutText: "About Text",
-                aboutImage: "About Image"
+                aboutImages: "About Images",
+                addImage: "Add Image"
             },
             common: {
                 save: "Save Changes",
@@ -187,7 +188,8 @@ export const translations = {
                 aboutSection: "بخش درباره ما",
                 aboutTitle: "عنوان درباره ما",
                 aboutText: "متن درباره ما",
-                aboutImage: "تصویر درباره ما"
+                aboutImages: "تصاویر درباره ما",
+                addImage: "افزودن تصویر"
             },
             common: {
                 save: "ذخیره تغییرات",

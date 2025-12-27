@@ -27,5 +27,5 @@ type Hero struct {
 	CallCaption LocalizedString `bson:"callCaption" json:"callCaption"`
     AboutTitle  LocalizedString `bson:"aboutTitle" json:"aboutTitle"`
     AboutText   LocalizedString `bson:"aboutText" json:"aboutText"`
-    AboutImage  string          `bson:"aboutImage" json:"aboutImage"`
+    AboutImages []string        `bson:"aboutImages" json:"aboutImages"`
 }

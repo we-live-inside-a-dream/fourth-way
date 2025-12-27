@@ -63,11 +63,14 @@
                     <textarea name="aboutText.en" style="height: 150px;"></textarea>
                 </div>
                 <div class="form-group">
-                    <label data-i18n="admin.hero.aboutImage">About Image</label>
-                    <input type="text" name="aboutImage" id="aboutImage">
+                    <label data-i18n="admin.hero.aboutImages">About Images</label>
+                    <div id="about-images-list" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+                        <!-- Images injected here -->
+                    </div>
                     <div style="margin-top: 5px;">
-                        <label style="font-size: 0.9rem; color: #666; font-weight: normal;">Or upload an image:</label>
-                        <input type="file" id="aboutImage-upload" accept="image/*">
+                        <input type="file" id="aboutImage-upload" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-action" id="btn-add-image" data-i18n="admin.hero.addImage">Add
+                            Image</button>
                     </div>
                 </div>
             </div>
@@ -141,7 +144,73 @@
 
                 if (data.aboutTitle) { setVal('aboutTitle.en', data.aboutTitle.en); setVal('aboutTitle.fa', data.aboutTitle.fa); }
                 if (data.aboutText) { setVal('aboutText.en', data.aboutText.en); setVal('aboutText.fa', data.aboutText.fa); }
-                setVal('aboutImage', data.aboutImage);
+
+                // Handle Images
+                const imagesContainer = document.getElementById('about-images-list');
+                const imagesList = data.aboutImages || [];
+
+                const renderImages = () => {
+                    imagesContainer.innerHTML = '';
+                    imagesList.forEach((url, idx) => {
+                        const div = document.createElement('div');
+                        div.style.cssText = 'position: relative; width: 100px; height: 100px; border: 1px solid #ddd; border-radius: 4px; overflow: hidden;';
+                        div.innerHTML = `
+                            <img src="${url}" style="width: 100%; height: 100%; object-fit: cover;">
+                            <button type="button" class="btn-remove" data-idx="${idx}" style="position: absolute; top: 2px; right: 2px; background: rgba(255,0,0,0.8); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; line-height: 20px; text-align: center; cursor: pointer; font-size: 12px;">&times;</button>
+                        `;
+                        imagesContainer.appendChild(div);
+                    });
+
+                    // Add listeners to remove buttons
+                    document.querySelectorAll('.btn-remove').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const idx = parseInt(e.target.dataset.idx);
+                            imagesList.splice(idx, 1);
+                            renderImages();
+                        });
+                    });
+                };
+
+                renderImages();
+
+                // Add Image Logic
+                const btnAddImage = document.getElementById('btn-add-image');
+                const fileInput = document.getElementById('aboutImage-upload');
+
+                btnAddImage.addEventListener('click', () => fileInput.click());
+
+                fileInput.addEventListener('change', async (e) => {
+                    if (!e.target.files.length) return;
+                    const file = e.target.files[0];
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    try {
+                        btnAddImage.textContent = 'Uploading...';
+                        btnAddImage.disabled = true;
+
+                        const res = await fetch(`${API_URL}/upload`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const data = await res.json();
+
+                        if (data.url) {
+                            imagesList.push(data.url);
+                            renderImages();
+                        }
+                    } catch (err) {
+                        console.error(err);
+                        alert('Upload failed');
+                    } finally {
+                        btnAddImage.textContent = 'Add Image'; // Should use i18n but simplistic for now
+                        btnAddImage.disabled = false;
+                        fileInput.value = '';
+                    }
+                });
+
+                // Expose list to submit handler
+                form.AboutImagesList = imagesList;
 
             } catch (e) {
                 console.error(e);
@@ -151,13 +220,7 @@
 
         loadData();
 
-        // Initialize Upload
-        const checkAdmin = setInterval(() => {
-            if (window.admin && window.admin.setupImageUpload) {
-                window.admin.setupImageUpload('aboutImage-upload', 'aboutImage');
-                clearInterval(checkAdmin);
-            }
-        }, 100);
+
 
         // Submit
         form.addEventListener('submit', async (e) => {
@@ -178,7 +241,7 @@
                 translatedBtn: { en: getVal('translatedBtn.en'), fa: getVal('translatedBtn.fa') },
                 aboutTitle: { en: getVal('aboutTitle.en'), fa: getVal('aboutTitle.fa') },
                 aboutText: { en: getVal('aboutText.en'), fa: getVal('aboutText.fa') },
-                aboutImage: getVal('aboutImage')
+                aboutImages: form.AboutImagesList || []
             };
 
             try {
