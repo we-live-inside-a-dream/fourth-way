@@ -109,6 +109,10 @@ func main() {
     mux.HandleFunc("/api/login", handler.Login)
     mux.HandleFunc("/api/upload", handler.UploadFile)
 
+    // Serve uploaded files statically
+    uploadsFS := http.FileServer(http.Dir("../public/uploads"))
+    mux.Handle("/uploads/", http.StripPrefix("/uploads/", uploadsFS))
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"

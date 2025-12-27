@@ -60,8 +60,12 @@ func (h *Handler) UploadFile(w http.ResponseWriter, r *http.Request) {
     }
 
     // 6. Return URL
-    // Since Vite serves "public" at root, the URL is /uploads/filename
-    fileURL := fmt.Sprintf("/uploads/%s", filename)
+    // Use absolute URL so images are served from the backend
+    baseURL := os.Getenv("BASE_URL")
+    if baseURL == "" {
+        baseURL = "http://localhost:8080"
+    }
+    fileURL := fmt.Sprintf("%s/uploads/%s", baseURL, filename)
 
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(map[string]string{
