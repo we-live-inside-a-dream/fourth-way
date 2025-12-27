@@ -23,3 +23,6 @@ pnpm-debug.log*
 # Mongo
 mongo-local/
 backend/.env
+
+# Go binaries
+backend/fourth-way-backend

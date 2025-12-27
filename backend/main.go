@@ -43,8 +43,8 @@ func main() {
 	// Use environment variable for URI or default to localhost
 	mongoURI := os.Getenv("MONGO_URI")
 	if mongoURI == "" {
-        cwd, _ := os.Getwd()
-        log.Printf("MONGO_URI is empty. Current working directory: %s", cwd)
+		cwd, _ := os.Getwd()
+		log.Printf("MONGO_URI is empty. Current working directory: %s", cwd)
 		mongoURI = "mongodb://localhost:27017"
 	}
 
@@ -65,10 +65,10 @@ func main() {
 	fmt.Println("Connected to MongoDB!")
 
 	// 2. Set up HTTP Server
-    handler = &handlers.Handler{Client: client}
-    
-    // Use a new ServeMux for routing
-    mux := http.NewServeMux()
+	handler = &handlers.Handler{Client: client}
+
+	// Use a new ServeMux for routing
+	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Welcome to the Fourth Way API!")
@@ -78,40 +78,36 @@ func main() {
 		fmt.Fprintf(w, "OK")
 	})
 
-    mux.HandleFunc("/api/books", func(w http.ResponseWriter, r *http.Request) {
-        if r.Method == http.MethodPost {
-            handler.CreateBook(w, r)
-            return
-        }
-        handler.GetBooks(w, r)
-    })
-    
-    // Handle specific book operations (e.g. PUT /api/books/{id})
-    mux.HandleFunc("/api/books/", func(w http.ResponseWriter, r *http.Request) {
-        if r.Method == http.MethodPut {
-            handler.UpdateBook(w, r)
-            return
-        }
-        if r.Method == http.MethodGet {
-             handler.GetBook(w, r)
-             return
-        }
-        http.NotFound(w, r)
-    })
+	mux.HandleFunc("/api/books", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodPost {
+			handler.CreateBook(w, r)
+			return
+		}
+		handler.GetBooks(w, r)
+	})
 
-    mux.HandleFunc("/api/hero", func(w http.ResponseWriter, r *http.Request) {
-        if r.Method == http.MethodPut {
-            handler.UpdateHero(w, r)
-            return
-        }
-        handler.GetHero(w, r)
-    })
-    mux.HandleFunc("/api/login", handler.Login)
-    mux.HandleFunc("/api/upload", handler.UploadFile)
+	// Handle specific book operations (e.g. PUT /api/books/{id})
+	mux.HandleFunc("/api/books/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodPut {
+			handler.UpdateBook(w, r)
+			return
+		}
+		if r.Method == http.MethodGet {
+			handler.GetBook(w, r)
+			return
+		}
+		http.NotFound(w, r)
+	})
 
-    // Serve uploaded files statically
-    uploadsFS := http.FileServer(http.Dir("../public/uploads"))
-    mux.Handle("/uploads/", http.StripPrefix("/uploads/", uploadsFS))
+	mux.HandleFunc("/api/hero", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodPut {
+			handler.UpdateHero(w, r)
+			return
+		}
+		handler.GetHero(w, r)
+	})
+	mux.HandleFunc("/api/login", handler.Login)
+	mux.HandleFunc("/api/upload", handler.UploadFile)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -119,8 +115,8 @@ func main() {
 	}
 
 	fmt.Printf("Server starting on port %s...\n", port)
-    
-    // Wrap the entire mux with CORS
+
+	// Wrap the entire mux with CORS
 	if err := http.ListenAndServe(":"+port, enableCORS(mux)); err != nil {
 		log.Fatal(err)
 	}

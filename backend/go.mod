@@ -5,8 +5,12 @@ go 1.22
 require go.mongodb.org/mongo-driver v1.17.6
 
 require (
+	github.com/cloudinary/cloudinary-go/v2 v2.14.0 // indirect
+	github.com/creasty/defaults v1.7.0 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.0 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
+	github.com/google/uuid v1.5.0 // indirect
+	github.com/gorilla/schema v1.4.1 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
