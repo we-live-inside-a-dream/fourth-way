@@ -1,8 +1,12 @@
 import '../scss/main.scss';
 import $ from 'jquery';
 import { API_URL } from './config.js';
+import { inject } from '@vercel/analytics';
 
 import { translations } from './translations.js';
+
+// Initialize Vercel Analytics
+inject();
 
 $(function () {
     console.log('Fourth Way Books - Initialized');
