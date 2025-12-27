@@ -3,6 +3,8 @@ package handlers
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -37,12 +39,24 @@ func (h *Handler) UploadFile(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// 3. Initialize Cloudinary
-	cld, err := cloudinary.NewFromParams(
-		os.Getenv("CLOUDINARY_CLOUD_NAME"),
-		os.Getenv("CLOUDINARY_API_KEY"),
-		os.Getenv("CLOUDINARY_API_SECRET"),
-	)
+	cloudName := os.Getenv("CLOUDINARY_CLOUD_NAME")
+	apiKey := os.Getenv("CLOUDINARY_API_KEY")
+	apiSecret := os.Getenv("CLOUDINARY_API_SECRET")
+
+	log.Printf("Cloudinary config - Cloud: %s, Key: %s..., Secret: %s...",
+		cloudName,
+		apiKey[:min(4, len(apiKey))],
+		apiSecret[:min(4, len(apiSecret))])
+
+	if cloudName == "" || apiKey == "" || apiSecret == "" {
+		log.Println("ERROR: Cloudinary credentials are missing!")
+		http.Error(w, "Server error: Cloudinary not configured", http.StatusInternalServerError)
+		return
+	}
+
+	cld, err := cloudinary.NewFromParams(cloudName, apiKey, apiSecret)
 	if err != nil {
+		log.Printf("ERROR initializing Cloudinary: %v", err)
 		http.Error(w, "Server error: could not initialize Cloudinary", http.StatusInternalServerError)
 		return
 	}
@@ -51,13 +65,17 @@ func (h *Handler) UploadFile(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
+	log.Printf("Uploading file: %s", handler.Filename)
 	uploadResult, err := cld.Upload.Upload(ctx, file, uploader.UploadParams{
-		Folder: "fourth-way", // Organize uploads in a folder
+		Folder: "fourth-way",
 	})
 	if err != nil {
-		http.Error(w, "Server error: could not upload to Cloudinary", http.StatusInternalServerError)
+		log.Printf("ERROR uploading to Cloudinary: %v", err)
+		http.Error(w, fmt.Sprintf("Upload failed: %v", err), http.StatusInternalServerError)
 		return
 	}
+
+	log.Printf("Upload successful! URL: %s", uploadResult.SecureURL)
 
 	// 5. Return the Cloudinary URL
 	w.Header().Set("Content-Type", "application/json")
