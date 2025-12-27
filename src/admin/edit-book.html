@@ -38,7 +38,11 @@
 
             <div class="form-group">
                 <label data-i18n="admin.books.image">Image URL</label>
-                <input type="text" name="image">
+                <input type="text" name="image" id="image">
+                <div style="margin-top: 5px;">
+                    <label style="font-size: 0.9rem; color: #666; font-weight: normal;">Or upload an image:</label>
+                    <input type="file" id="image-upload" accept="image/*">
+                </div>
             </div>
 
             <div class="form-group">
@@ -109,6 +113,14 @@
     <script type="module" src="../js/admin.js"></script>
     <script type="module">
         import { API_URL } from '../js/config.js';
+
+        // Initialize Upload
+        const checkAdmin = setInterval(() => {
+            if (window.admin && window.admin.setupImageUpload) {
+                window.admin.setupImageUpload('image-upload', 'image');
+                clearInterval(checkAdmin);
+            }
+        }, 100);
 
         // Auth/Logout handled by admin.js
 

@@ -114,6 +114,56 @@ function initAdmin() {
         }, 3000);
     }
 
+    // Image Upload Logic
+    function setupImageUpload(fileInputId, urlInputId, previewId = null) {
+        const fileInput = document.getElementById(fileInputId);
+        const urlInput = document.getElementById(urlInputId);
+
+        if (!fileInput || !urlInput) return;
+
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Show loading state (simple text change for now)
+            const originalLabel = fileInput.previousElementSibling ? fileInput.previousElementSibling.textContent : 'Upload';
+            if (fileInput.previousElementSibling) fileInput.previousElementSibling.textContent = 'Uploading...';
+
+            try {
+                const response = await fetch(`${API_URL}/upload`, {
+                    method: 'POST',
+                    body: formData // No Content-Type header needed, browser sets it for FormData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    urlInput.value = data.url;
+
+                    // Trigger input event to handle any bound listeners
+                    urlInput.dispatchEvent(new Event('input'));
+
+                    if (previewId) {
+                        const preview = document.getElementById(previewId);
+                        if (preview) preview.src = data.url;
+                    }
+                    showToast('Image uploaded successfully!', 'success');
+                } else {
+                    showToast('Upload failed', 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('Upload error', 'error');
+            } finally {
+                if (fileInput.previousElementSibling) fileInput.previousElementSibling.textContent = originalLabel;
+                // Clear input so selecting same file works again
+                fileInput.value = '';
+            }
+        });
+    }
+
     // Expose utils
     window.admin = {
         applyTranslations: () => {
@@ -135,7 +185,8 @@ function initAdmin() {
             });
         },
         getLang: () => lang,
-        showToast: showToast
+        showToast: showToast,
+        setupImageUpload: setupImageUpload
     };
 }
 

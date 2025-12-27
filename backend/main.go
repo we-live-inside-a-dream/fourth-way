@@ -107,6 +107,7 @@ func main() {
         handler.GetHero(w, r)
     })
     mux.HandleFunc("/api/login", handler.Login)
+    mux.HandleFunc("/api/upload", handler.UploadFile)
 
 	port := os.Getenv("PORT")
 	if port == "" {
