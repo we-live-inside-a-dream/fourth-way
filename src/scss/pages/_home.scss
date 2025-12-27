@@ -44,9 +44,18 @@
     display: flex;
     gap: 20px;
     width: max-content;
-    animation: scroll 40s linear infinite;
+
+    // Animation with Safari vendor prefix
+    -webkit-animation: scroll 100s linear infinite;
+    animation: scroll 80s linear infinite;
+
+    // Ensure animation works on Safari
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
 
     &:hover {
+        -webkit-animation-play-state: paused;
         animation-play-state: paused;
     }
 
@@ -57,6 +66,24 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         object-fit: cover;
         flex-shrink: 0;
+
+        // Mobile: smaller images
+        @media (max-width: 768px) {
+            height: 200px;
+        }
+    }
+}
+
+// Keyframes with Safari vendor prefix
+@-webkit-keyframes scroll {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
     }
 }
 
