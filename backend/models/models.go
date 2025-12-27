@@ -25,4 +25,7 @@ type Hero struct {
 	WrittenBtn  LocalizedString `bson:"writtenBtn" json:"writtenBtn"`
 	TranslatedBtn LocalizedString `bson:"translatedBtn" json:"translatedBtn"`
 	CallCaption LocalizedString `bson:"callCaption" json:"callCaption"`
+    AboutTitle  LocalizedString `bson:"aboutTitle" json:"aboutTitle"`
+    AboutText   LocalizedString `bson:"aboutText" json:"aboutText"`
+    AboutImage  string          `bson:"aboutImage" json:"aboutImage"`
 }

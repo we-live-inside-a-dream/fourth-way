@@ -139,6 +139,11 @@ $(function () {
                 // Update buttons
                 if (data.writtenBtn) $('a[data-i18n="hero.writtenBtn"]').text(getText(data.writtenBtn));
                 if (data.translatedBtn) $('a[data-i18n="hero.translatedBtn"]').text(getText(data.translatedBtn));
+
+                // Update About Section
+                if (data.aboutTitle) $('h2[data-i18n="home.aboutTitle"]').text(getText(data.aboutTitle));
+                if (data.aboutText) $('p[data-i18n="home.aboutText"]').text(getText(data.aboutText));
+                if (data.aboutImage) $('#about-image').attr('src', data.aboutImage);
             },
             error: function (err) {
                 console.error("Failed to fetch hero data:", err);

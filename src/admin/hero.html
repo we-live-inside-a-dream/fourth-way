@@ -51,6 +51,25 @@
                     <label data-i18n="admin.hero.translatedBtn">Translated Button Text</label>
                     <input type="text" name="translatedBtn.en">
                 </div>
+
+                <h4 style="margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;"
+                    data-i18n="admin.hero.aboutSection">About Section</h4>
+                <div class="form-group">
+                    <label data-i18n="admin.hero.aboutTitle">About Title</label>
+                    <input type="text" name="aboutTitle.en">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="admin.hero.aboutText">About Text</label>
+                    <textarea name="aboutText.en" style="height: 150px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="admin.hero.aboutImage">About Image</label>
+                    <input type="text" name="aboutImage" id="aboutImage">
+                    <div style="margin-top: 5px;">
+                        <label style="font-size: 0.9rem; color: #666; font-weight: normal;">Or upload an image:</label>
+                        <input type="file" id="aboutImage-upload" accept="image/*">
+                    </div>
+                </div>
             </div>
 
             <div class="lang-section">
@@ -74,6 +93,18 @@
                 <div class="form-group">
                     <label data-i18n="admin.hero.translatedBtn">Translated Button Text (FA)</label>
                     <input type="text" name="translatedBtn.fa" dir="rtl">
+                </div>
+
+                <h4 style="margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;"
+                    data-i18n="admin.hero.aboutSection">About Section (FA)
+                </h4>
+                <div class="form-group">
+                    <label data-i18n="admin.hero.aboutTitle">About Title (FA)</label>
+                    <input type="text" name="aboutTitle.fa" dir="rtl">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="admin.hero.aboutText">About Text (FA)</label>
+                    <textarea name="aboutText.fa" dir="rtl" style="height: 150px;"></textarea>
                 </div>
             </div>
 
@@ -108,6 +139,10 @@
                 if (data.writtenBtn) { setVal('writtenBtn.en', data.writtenBtn.en); setVal('writtenBtn.fa', data.writtenBtn.fa); }
                 if (data.translatedBtn) { setVal('translatedBtn.en', data.translatedBtn.en); setVal('translatedBtn.fa', data.translatedBtn.fa); }
 
+                if (data.aboutTitle) { setVal('aboutTitle.en', data.aboutTitle.en); setVal('aboutTitle.fa', data.aboutTitle.fa); }
+                if (data.aboutText) { setVal('aboutText.en', data.aboutText.en); setVal('aboutText.fa', data.aboutText.fa); }
+                setVal('aboutImage', data.aboutImage);
+
             } catch (e) {
                 console.error(e);
                 msgDiv.innerHTML = '<span style="color:red">Failed to load data</span>';
@@ -115,6 +150,14 @@
         }
 
         loadData();
+
+        // Initialize Upload
+        const checkAdmin = setInterval(() => {
+            if (window.admin && window.admin.setupImageUpload) {
+                window.admin.setupImageUpload('aboutImage-upload', 'aboutImage');
+                clearInterval(checkAdmin);
+            }
+        }, 100);
 
         // Submit
         form.addEventListener('submit', async (e) => {
@@ -133,6 +176,9 @@
                 callCaption: { en: getVal('callCaption.en'), fa: getVal('callCaption.fa') },
                 writtenBtn: { en: getVal('writtenBtn.en'), fa: getVal('writtenBtn.fa') },
                 translatedBtn: { en: getVal('translatedBtn.en'), fa: getVal('translatedBtn.fa') },
+                aboutTitle: { en: getVal('aboutTitle.en'), fa: getVal('aboutTitle.fa') },
+                aboutText: { en: getVal('aboutText.en'), fa: getVal('aboutText.fa') },
+                aboutImage: getVal('aboutImage')
             };
 
             try {

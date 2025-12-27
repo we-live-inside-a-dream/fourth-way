@@ -83,7 +83,11 @@ export const translations = {
                 subtitle: "Subtitle",
                 callCaption: "Call Caption",
                 writtenBtn: "Written Button Text",
-                translatedBtn: "Translated Button Text"
+                translatedBtn: "Translated Button Text",
+                aboutSection: "About Section",
+                aboutTitle: "About Title",
+                aboutText: "About Text",
+                aboutImage: "About Image"
             },
             common: {
                 save: "Save Changes",
@@ -179,7 +183,11 @@ export const translations = {
                 subtitle: "زیرعنوان",
                 callCaption: "عنوان کادر دعوت",
                 writtenBtn: "متن دکمه آثار تالیفی",
-                translatedBtn: "متن دکمه ترجمه‌ها"
+                translatedBtn: "متن دکمه ترجمه‌ها",
+                aboutSection: "بخش درباره ما",
+                aboutTitle: "عنوان درباره ما",
+                aboutText: "متن درباره ما",
+                aboutImage: "تصویر درباره ما"
             },
             common: {
                 save: "ذخیره تغییرات",
