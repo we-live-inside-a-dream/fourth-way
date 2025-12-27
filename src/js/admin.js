@@ -44,7 +44,33 @@ function initAdmin() {
         });
     }
 
-    // Initial Set
+    // Theme Logic
+    let theme = localStorage.getItem('theme') || 'light';
+
+    function setTheme(newTheme) {
+        theme = newTheme;
+        localStorage.setItem('theme', theme);
+        document.documentElement.setAttribute('data-theme', theme);
+
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    }
+
+    // Theme Listener
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            setTheme(theme === 'dark' ? 'light' : 'dark');
+        });
+    }
+
+    // Initial Theme Set
+    setTheme(theme);
+
+    // Initial Lang Set
     setLanguage(lang);
 
     // Auth Logic

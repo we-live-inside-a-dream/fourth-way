@@ -1,15 +1,43 @@
 // Admin Pages Styles
 
 // Scoped to Admin Dashboard Pages
-body.admin-page {
+// Scoped to Admin Dashboard Pages & Login
+body.admin-page,
+body.admin-login {
+    // defaults (Light Mode)
+    --admin-bg: #f4f4f4;
+    --admin-text: #333;
+    --admin-header-bg: #333;
+    --admin-card-bg: white;
+    --admin-border: #ddd;
+    --admin-input-bg: white;
+    --admin-hover-bg: #f8f9fa;
+    --admin-shadow: rgba(0, 0, 0, 0.1);
+
     font-family: sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--admin-bg);
     margin: 0;
-    color: #333; // Explicit color to override dark mode defaults if needed
+    color: var(--admin-text);
+}
+
+// Dark Mode Overrides
+html[data-theme="dark"] body.admin-page,
+html[data-theme="dark"] body.admin-login {
+    --admin-bg: #121212;
+    --admin-text: #e0e0e0;
+    --admin-header-bg: #1e1e1e;
+    --admin-card-bg: #1e1e1e;
+    --admin-border: #444;
+    --admin-input-bg: #2d2d2d;
+    --admin-hover-bg: #2d2d2d; // for table rows
+    --admin-shadow: rgba(0, 0, 0, 0.5);
+}
+
+body.admin-page {
 
     // Header
     header.admin-header {
-        background: #333;
+        background: var(--admin-header-bg);
         color: white;
         padding: 1rem;
         display: flex;
@@ -39,18 +67,18 @@ body.admin-page {
         &.container-sm {
             max-width: 800px;
             padding: 2rem;
-            background: white;
+            background: var(--admin-card-bg);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px var(--admin-shadow);
         }
 
         // For books table
         &.container-md {
             max-width: 1000px;
             padding: 2rem;
-            background: white;
+            background: var(--admin-card-bg);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px var(--admin-shadow);
         }
     }
 
@@ -63,15 +91,15 @@ body.admin-page {
 
     // Cards
     .card {
-        background: white;
+        background: var(--admin-card-bg);
         padding: 1.5rem;
         border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        color: #333; // Ensure card text is dark
+        box-shadow: 0 2px 5px var(--admin-shadow);
+        color: var(--admin-text); // Ensure card text is dark
 
         h3 {
             margin-top: 0;
-            color: #333;
+            color: var(--admin-text);
         }
     }
 
@@ -137,7 +165,7 @@ body.admin-page {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: bold;
-            color: #333;
+            color: var(--admin-text);
         }
 
         input,
@@ -145,11 +173,11 @@ body.admin-page {
         select {
             width: 100%;
             padding: 0.8rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--admin-border);
             border-radius: 4px;
             box-sizing: border-box;
-            background: white;
-            color: #333;
+            background: var(--admin-input-bg);
+            color: var(--admin-text);
         }
 
         textarea {
@@ -166,14 +194,14 @@ body.admin-page {
 
     // Headings & Sections
     h2 {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--admin-border);
         padding-bottom: 0.5rem;
         margin-bottom: 1.5rem;
-        color: #333;
+        color: var(--admin-text);
     }
 
     .lang-section {
-        border: 1px solid #eee;
+        border: 1px solid var(--admin-border);
         padding: 1rem;
         margin-bottom: 1rem;
         border-radius: 4px;
@@ -195,12 +223,12 @@ body.admin-page {
     td {
         text-align: left;
         padding: 1rem;
-        border-bottom: 1px solid #ddd;
-        color: #333;
+        border-bottom: 1px solid var(--admin-border);
+        color: var(--admin-text);
     }
 
     th {
-        background-color: #f8f9fa;
+        background-color: var(--admin-hover-bg);
     }
 
     .loading {
@@ -213,7 +241,7 @@ body.admin-page {
 // Scoped to Admin Login Page
 body.admin-login {
     font-family: sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--admin-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,18 +249,18 @@ body.admin-login {
     margin: 0;
 
     .login-card {
-        background: white;
+        background: var(--admin-card-bg);
         padding: 2rem;
         border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px var(--admin-shadow);
         width: 100%;
         max-width: 400px;
-        color: #333;
+        color: var(--admin-text);
 
         h2 {
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #333;
+            color: var(--admin-text);
             border: none;
         }
     }
@@ -243,18 +271,18 @@ body.admin-login {
         label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #555;
+            color: var(--admin-text);
             font-weight: normal;
         }
 
         input {
             width: 100%;
             padding: 0.8rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--admin-border);
             border-radius: 4px;
             box-sizing: border-box;
-            background: white;
-            color: #333;
+            background: var(--admin-input-bg);
+            color: var(--admin-text);
         }
     }
 
