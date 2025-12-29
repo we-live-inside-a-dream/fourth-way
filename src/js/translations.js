@@ -10,7 +10,8 @@ export const translations = {
         },
         home: {
             aboutTitle: "About the Author & Translator",
-            aboutText: "Dedicated to preserving and expanding the knowledge of the Fourth Way, these works aim to bring clarity to the profound spiritual teachings of the 20th century. Through careful translation and original writing, we strive to make these transformative ideas accessible to the modern seeker."
+            aboutText: "Dedicated to preserving and expanding the knowledge of the Fourth Way, these works aim to bring clarity to the profound spiritual teachings of the 20th century. Through careful translation and original writing, we strive to make these transformative ideas accessible to the modern seeker.",
+            callCaption: "The Call of Silence: Reflections on Awareness..."
         },
         footer: {
             rights: "Fourth Way Books. All Rights Reserved.",
@@ -81,7 +82,7 @@ export const translations = {
             hero: {
                 title: "Title",
                 subtitle: "Subtitle",
-                callCaption: "Call Caption",
+                // callCaption: "Call Caption",
                 writtenBtn: "Written Button Text",
                 translatedBtn: "Translated Button Text",
                 aboutSection: "About Section",
@@ -111,7 +112,8 @@ export const translations = {
         },
         home: {
             aboutTitle: "درباره نویسنده و مترجم",
-            aboutText: "با هدف حفظ و گسترش دانش راه چهارم، این آثار سعی در شفاف‌سازی آموزه‌های معنوی عمیق قرن بیستم دارند. از طریق ترجمه دقیق و تالیف اصیل، ما می‌کوشیم تا این ایده‌های تحول‌آفرین را برای جویندگان امروزی قابل دسترس کنیم."
+            aboutText: "با هدف حفظ و گسترش دانش راه چهارم، این آثار سعی در شفاف‌سازی آموزه‌های معنوی عمیق قرن بیستم دارند. از طریق ترجمه دقیق و تالیف اصیل، ما می‌کوشیم تا این ایده‌های تحول‌آفرین را برای جویندگان امروزی قابل دسترس کنیم.",
+            callCaption: "ندای سکوت: تاملاتی درباره آگاهی..."
         },
         footer: {
             rights: "تمامی حقوق محفوظ است.",
@@ -182,7 +184,7 @@ export const translations = {
             hero: {
                 title: "عنوان",
                 subtitle: "زیرعنوان",
-                callCaption: "عنوان کادر دعوت",
+                // callCaption: "عنوان کادر دعوت",
                 writtenBtn: "متن دکمه آثار تالیفی",
                 translatedBtn: "متن دکمه ترجمه‌ها",
                 aboutSection: "بخش درباره ما",

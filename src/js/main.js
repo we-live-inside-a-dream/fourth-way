@@ -138,7 +138,7 @@ $(function () {
                 // Update Hero content
                 if (data.title) $heroTitle.text(getText(data.title));
                 if (data.subtitle) $('p[data-i18n="hero.subtitle"]').text(getText(data.subtitle));
-                if (data.callCaption) $('[data-i18n="hero.callCaption"]').text(getText(data.callCaption));
+                // if (data.callCaption) $('[data-i18n="hero.callCaption"]').text(getText(data.callCaption));
 
                 // Update buttons
                 if (data.writtenBtn) $('a[data-i18n="hero.writtenBtn"]').text(getText(data.writtenBtn));
