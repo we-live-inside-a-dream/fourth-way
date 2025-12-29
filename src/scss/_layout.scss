@@ -4,9 +4,17 @@
 header:not(.page-header) {
     background-color: $color-white;
     box-shadow: $shadow-card;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+
+    &.navbar-hidden {
+        transform: translateY(-100%);
+        box-shadow: none; // Optional: remove shadow when hidden so it doesn't bleed
+    }
 
     nav {
         @include container;
