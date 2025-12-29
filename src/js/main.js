@@ -12,7 +12,7 @@ $(function () {
     console.log('Fourth Way Books - Initialized');
 
     // Auto-Hiding Navbar Logic
-    const $header = $('header');
+    const $header = $('header').not('.admin-header');
     let lastScrollTop = 0;
     const scrollThreshold = 10;
     const topZoneHeight = 50;

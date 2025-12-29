@@ -1,35 +1,35 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-header:not(.page-header) {
-    background-color: $color-white;
-    box-shadow: $shadow-card;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: transform 0.3s ease-in-out;
+// header:not(.page-header):not(.admin-header) {
+//     background-color: $color-white;
+//     box-shadow: $shadow-card;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     z-index: 1000;
+//     transition: transform 0.3s ease-in-out;
 
-    &.navbar-hidden {
-        transform: translateY(-100%);
-        box-shadow: none; // Optional: remove shadow when hidden so it doesn't bleed
-    }
+//     &.navbar-hidden {
+//         transform: translateY(-100%);
+//         box-shadow: none; // Optional: remove shadow when hidden so it doesn't bleed
+//     }
 
-    nav {
-        @include container;
-        @include flex-between;
-        padding-top: $spacing-sm;
-        padding-bottom: $spacing-sm;
+//     nav {
+//         @include container;
+//         @include flex-between;
+//         padding-top: $spacing-sm;
+//         padding-bottom: $spacing-sm;
 
-        .logo {
-            font-family: $font-family-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: $color-primary;
-        }
-    }
-}
+//         .logo {
+//             font-family: $font-family-serif;
+//             font-size: 1.5rem;
+//             font-weight: 700;
+//             color: $color-primary;
+//         }
+//     }
+// }
 
 main {
     min-height: 80vh;
