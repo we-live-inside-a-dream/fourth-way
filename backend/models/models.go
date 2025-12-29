@@ -15,17 +15,17 @@ type Book struct {
 	Link        string          `bson:"link" json:"link"`
 	BtnText     LocalizedString `bson:"btnText" json:"btnText"`
 	Category    string          `bson:"category" json:"category"` // "written" or "translated"
-    Featured    bool            `bson:"featured" json:"featured"` // For hero carousel if needed, or just book list logic
+	Featured    bool            `bson:"featured" json:"featured"` // For hero carousel if needed, or just book list logic
 }
 
 type Hero struct {
-    ID          string          `bson:"_id,omitempty" json:"id,omitempty"`
-	Title       LocalizedString `bson:"title" json:"title"`
-	Subtitle    LocalizedString `bson:"subtitle" json:"subtitle"`
-	WrittenBtn  LocalizedString `bson:"writtenBtn" json:"writtenBtn"`
+	ID            string          `bson:"_id,omitempty" json:"id,omitempty"`
+	Title         LocalizedString `bson:"title" json:"title"`
+	Subtitle      LocalizedString `bson:"subtitle" json:"subtitle"`
+	WrittenBtn    LocalizedString `bson:"writtenBtn" json:"writtenBtn"`
 	TranslatedBtn LocalizedString `bson:"translatedBtn" json:"translatedBtn"`
-	CallCaption LocalizedString `bson:"callCaption" json:"callCaption"`
-    AboutTitle  LocalizedString `bson:"aboutTitle" json:"aboutTitle"`
-    AboutText   LocalizedString `bson:"aboutText" json:"aboutText"`
-    AboutImages []string        `bson:"aboutImages" json:"aboutImages"`
+	// CallCaption LocalizedString `bson:"callCaption" json:"callCaption"`
+	AboutTitle  LocalizedString `bson:"aboutTitle" json:"aboutTitle"`
+	AboutText   LocalizedString `bson:"aboutText" json:"aboutText"`
+	AboutImages []string        `bson:"aboutImages" json:"aboutImages"`
 }
