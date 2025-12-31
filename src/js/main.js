@@ -332,9 +332,14 @@ $(function () {
                 <div class="description" style="line-height: 1.8; color: var(--color-text); margin-bottom: 2rem; text-align: justify;">
                     <p>${desc}</p>
                 </div>
-                ${(btnText === 'Coming Soon...' || btnText === 'به زودی' || btnText == 'Coming Soon' || btnText == 'به زودی') ?
-                `<span class="btn btn-primary disabled" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${btnText}</span>` :
-                `<a href="${book.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${btnText}</a>`
+                ${(!book.featured) ?
+                `<span class="btn btn-primary disabled" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block;">${lang === 'fa' ? 'به زودی...' : 'Coming Soon...'}</span>` :
+                `<div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                    ${book.payhipLink ? `<a href="${book.payhipLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block; background-color: #2b61a3; color: white; border: none;"><i class="fab fa-payhip"></i> ${lang === 'fa' ? 'خرید در Payhip' : 'Buy on Payhip'}</a>` : ''}
+                    ${book.amazonKindleLink ? `<a href="${book.amazonKindleLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block; background-color: #FF9900; color: black; border: none;"><i class="fab fa-amazon"></i> Amazon Kindle</a>` : ''}
+                    ${book.amazonLink ? `<a href="${book.amazonLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block; background-color: #FF9900; color: black; border: none;"><i class="fab fa-amazon"></i> Amazon</a>` : ''}
+                    ${book.appleLink ? `<a href="${book.appleLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem; text-decoration: none; display: inline-block; background-color: #000; color: white; border: none;"><i class="fab fa-apple"></i> Apple Books</a>` : ''}
+                </div>`
             }
             </div>
         `;

@@ -6,16 +6,19 @@ type LocalizedString struct {
 }
 
 type Book struct {
-	ID          string          `bson:"_id,omitempty" json:"id"`
-	Title       LocalizedString `bson:"title" json:"title"`
-	Author      LocalizedString `bson:"author" json:"author"`
-	Translator  LocalizedString `bson:"translator,omitempty" json:"translator,omitempty"` // Optional
-	Description LocalizedString `bson:"description" json:"description"`
-	Image       string          `bson:"image" json:"image"`
-	Link        string          `bson:"link" json:"link"`
-	BtnText     LocalizedString `bson:"btnText" json:"btnText"`
-	Category    string          `bson:"category" json:"category"` // "written" or "translated"
-	Featured    bool            `bson:"featured" json:"featured"` // For hero carousel if needed, or just book list logic
+	ID               string          `bson:"_id,omitempty" json:"id"`
+	Title            LocalizedString `bson:"title" json:"title"`
+	Author           LocalizedString `bson:"author" json:"author"`
+	Translator       LocalizedString `bson:"translator,omitempty" json:"translator,omitempty"` // Optional
+	Description      LocalizedString `bson:"description" json:"description"`
+	Image            string          `bson:"image" json:"image"`
+	PayhipLink       string          `bson:"payhipLink" json:"payhipLink"`
+	AmazonLink       string          `bson:"amazonLink" json:"amazonLink,omitempty"`
+	AmazonKindleLink string          `bson:"amazonKindleLink" json:"amazonKindleLink,omitempty"`
+	AppleLink        string          `bson:"appleLink" json:"appleLink,omitempty"`
+	BtnText          LocalizedString `bson:"btnText" json:"btnText"`
+	Category         string          `bson:"category" json:"category"` // "written" or "translated"
+	Featured         bool            `bson:"featured" json:"featured"` // For hero carousel if needed, or just book list logic
 }
 
 type Hero struct {

@@ -46,9 +46,28 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label data-i18n="admin.books.link">Buy Link / Details Link</label>
+            <!-- <div class="form-group">
+                <label data-i18n="admin.books.link">Buy Link / Details Link (General)</label>
                 <input type="text" name="link">
+            </div> -->
+            <div class="form-group">
+                <label>Payhip Link</label>
+                <input type="text" name="payhipLink" placeholder="Optional">
+            </div>
+
+            <div class="form-group">
+                <label>Amazon Link</label>
+                <input type="text" name="amazonLink" placeholder="Optional">
+            </div>
+
+            <div class="form-group">
+                <label>Amazon Kindle Link</label>
+                <input type="text" name="amazonKindleLink" placeholder="Optional">
+            </div>
+
+            <div class="form-group">
+                <label>Apple Books Link</label>
+                <input type="text" name="appleLink" placeholder="Optional">
             </div>
 
             <div class="form-group">
@@ -77,10 +96,10 @@
                     <label data-i18n="admin.books.descEn">Description</label>
                     <textarea name="description.en"></textarea>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label data-i18n="admin.books.btnTextEn">Button Text</label>
                     <input type="text" name="btnText.en">
-                </div>
+                </div> -->
             </div>
 
             <div class="lang-section">
@@ -101,10 +120,10 @@
                     <label data-i18n="admin.books.descFa">Description (FA)</label>
                     <textarea name="description.fa" dir="rtl"></textarea>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label data-i18n="admin.books.btnTextFa">Button Text (FA)</label>
                     <input type="text" name="btnText.fa" dir="rtl">
-                </div>
+                </div> -->
             </div>
 
             <button type="submit" class="btn-submit" data-i18n="admin.common.add">Add Book</button>
@@ -142,7 +161,9 @@
                 // No ID for create
                 category: getVal('category'),
                 image: getVal('image'),
-                link: getVal('link'),
+                payhipLink: getVal('payhipLink'),
+                amazonLink: getVal('amazonLink'),
+                appleLink: getVal('appleLink'),
                 featured: getVal('featured') === 'true',
                 title: { en: getVal('title.en'), fa: getVal('title.fa') },
                 author: { en: getVal('author.en'), fa: getVal('author.fa') },

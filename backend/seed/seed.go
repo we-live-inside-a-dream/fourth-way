@@ -59,7 +59,7 @@ func main() {
 				Fa: "«.ندای سکوت» کتابی در حوزهٔ آگاهی و خودشناسی است...",
 			},
 			Image: "/assets/images/call-of-silence-cover.jpeg",
-			Link:  "https://payhip.com/b/FY1c4",
+
 			BtnText: models.LocalizedString{
 				En: "Buy on Payhip",
 				Fa: "خرید در Payhip",
@@ -86,7 +86,7 @@ func main() {
 				Fa: "ترجمه‌ای نهایی از مکتوبات ژان دو سالزمن...",
 			},
 			Image: "/assets/images/in-search-of-being-cover.png",
-			Link:  "#",
+
 			BtnText: models.LocalizedString{
 				En: "Coming Soon...",
 				Fa: "...به زودی",
