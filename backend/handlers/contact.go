@@ -41,23 +41,6 @@ func (h *Handler) SendContactEmail(w http.ResponseWriter, r *http.Request) {
 	smtpPassword := os.Getenv("SMTP_PASSWORD")
 	contactEmail := os.Getenv("CONTACT_EMAIL")
 
-	// Logging for debugging (keep this until fixed)
-	if smtpHost == "" {
-		fmt.Println("Error: SMTP_HOST is missing")
-	}
-	if smtpPort == "" {
-		fmt.Println("Error: SMTP_PORT is missing")
-	}
-	if smtpEmail == "" {
-		fmt.Println("Error: SMTP_EMAIL is missing")
-	}
-	if smtpPassword == "" {
-		fmt.Println("Error: SMTP_PASSWORD is missing")
-	}
-	if contactEmail == "" {
-		fmt.Println("Error: CONTACT_EMAIL is missing")
-	}
-
 	if smtpHost == "" || smtpPort == "" || smtpEmail == "" || smtpPassword == "" || contactEmail == "" {
 		http.Error(w, "Email configuration error - check server logs", http.StatusInternalServerError)
 		return
