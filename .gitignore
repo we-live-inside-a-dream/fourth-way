@@ -26,3 +26,4 @@ backend/.env
 
 # Go binaries
 backend/fourth-way-backend
+backend/server

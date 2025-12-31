@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -64,12 +65,78 @@ func (h *Handler) SendContactEmail(w http.ResponseWriter, r *http.Request) {
 		"Message:\r\n" + req.Message + "\r\n")
 
 	// Send the email
+	// Send the email
 	addr := smtpHost + ":" + smtpPort
-	err := smtp.SendMail(addr, auth, smtpEmail, to, msg)
-	if err != nil {
-		fmt.Printf("Error sending email: %v\n", err)
-		http.Error(w, "Failed to send email", http.StatusInternalServerError)
-		return
+	var err error
+
+	if smtpPort == "465" {
+		// SSL/TLS connection for Port 465 (Render)
+		tlsConfig := &tls.Config{
+			InsecureSkipVerify: false,
+			ServerName:         smtpHost,
+		}
+
+		conn, err := tls.Dial("tcp", addr, tlsConfig)
+		if err != nil {
+			fmt.Printf("Error dialing TLS: %v\n", err)
+			http.Error(w, "Failed to connect to email server", http.StatusInternalServerError)
+			return
+		}
+
+		client, err := smtp.NewClient(conn, smtpHost)
+		if err != nil {
+			fmt.Printf("Error creating SMTP client: %v\n", err)
+			http.Error(w, "Failed to create email client", http.StatusInternalServerError)
+			return
+		}
+		defer client.Quit()
+
+		if err = client.Auth(auth); err != nil {
+			fmt.Printf("Error authenticating: %v\n", err)
+			http.Error(w, "Email authentication failed", http.StatusInternalServerError)
+			return
+		}
+
+		if err = client.Mail(smtpEmail); err != nil {
+			fmt.Printf("Error setting sender: %v\n", err)
+			http.Error(w, "Failed to send email", http.StatusInternalServerError)
+			return
+		}
+		if err = client.Rcpt(to[0]); err != nil {
+			fmt.Printf("Error setting recipient: %v\n", err)
+			http.Error(w, "Failed to send email", http.StatusInternalServerError)
+			return
+		}
+
+		wData, err := client.Data()
+		if err != nil {
+			fmt.Printf("Error getting data writer: %v\n", err)
+			http.Error(w, "Failed to send email", http.StatusInternalServerError)
+			return
+		}
+
+		_, err = wData.Write(msg)
+		if err != nil {
+			fmt.Printf("Error writing email body: %v\n", err)
+			http.Error(w, "Failed to send email", http.StatusInternalServerError)
+			return
+		}
+
+		err = wData.Close()
+		if err != nil {
+			fmt.Printf("Error closing data writer: %v\n", err)
+			http.Error(w, "Failed to send email", http.StatusInternalServerError)
+			return
+		}
+
+	} else {
+		// Standard STARTTLS (Port 587)
+		err = smtp.SendMail(addr, auth, smtpEmail, to, msg)
+		if err != nil {
+			fmt.Printf("Error sending email: %v\n", err)
+			http.Error(w, "Failed to send email", http.StatusInternalServerError)
+			return
+		}
 	}
 
 	w.Header().Set("Content-Type", "application/json")
