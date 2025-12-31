@@ -108,6 +108,7 @@ func main() {
 	})
 	mux.HandleFunc("/api/login", handler.Login)
 	mux.HandleFunc("/api/upload", handler.UploadFile)
+	mux.HandleFunc("/api/contact", handler.SendContactEmail)
 
 	port := os.Getenv("PORT")
 	if port == "" {

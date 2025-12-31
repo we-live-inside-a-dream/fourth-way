@@ -340,4 +340,47 @@ $(function () {
         `;
         $container.html(html);
     }
+    // Contact Form Submission
+    $('#contact-form').on('submit', function (e) {
+        e.preventDefault();
+
+        const $form = $(this);
+        const $submitBtn = $('#contact-submit');
+        const $status = $('#contact-status');
+
+        // Disable button
+        $submitBtn.prop('disabled', true).text('Sending...');
+        $status.hide().removeClass('success error');
+
+        const formData = {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            message: $('#message').val()
+        };
+
+        $.ajax({
+            url: `${API_URL}/contact`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function (response) {
+                $status.text('Message sent successfully! We will get back to you soon.').addClass('success').css('color', 'green').fadeIn();
+                $form[0].reset();
+            },
+            error: function (xhr) {
+                console.error("Contact form error:", xhr);
+                $status.text('Failed to send message. Please try again later.').addClass('error').css('color', 'red').fadeIn();
+            },
+            complete: function () {
+                $submitBtn.prop('disabled', false).text('Send Message');
+                // Restore original text if i18n is used? 
+                // Better: Just use the data-i18n attribute to re-apply if language switches, 
+                // but for now hardcoded restore is fine or just leave 'Send Message' 
+                // (simpler: use the variable text from translation if available, but 'Send Message' is safe fall back)
+                // Actually, let's just trigger a language update to restore text if needed, or just leave it.
+                // Re-running setLanguage(currentLang) might be overkill.
+                // Simple fix: just use the initial text.
+            }
+        });
+    });
 });

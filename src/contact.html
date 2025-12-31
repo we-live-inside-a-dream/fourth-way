@@ -96,7 +96,7 @@
 
         <section class="contact-section">
             <div style="width: 90%; margin: 0 auto;">
-                <form>
+                <form id="contact-form">
                     <div class="form-group">
                         <label for="name" data-i18n="contact.name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -109,7 +109,9 @@
                         <label for="message" data-i18n="contact.message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="contact.send" id="contact-submit">Send
+                        Message</button>
+                    <div id="contact-status" style="margin-top: 1rem; font-weight: bold; display: none;"></div>
                 </form>
             </div>
         </section>
