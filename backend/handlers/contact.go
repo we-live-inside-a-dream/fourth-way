@@ -69,8 +69,8 @@ func (h *Handler) SendContactEmail(w http.ResponseWriter, r *http.Request) {
 	addr := smtpHost + ":" + smtpPort
 	var err error
 
-	if smtpPort == "465" {
-		// SSL/TLS connection for Port 465 (Render)
+	if smtpPort == "587" {
+		// SSL/TLS connection for Port 587 (Render)
 		tlsConfig := &tls.Config{
 			InsecureSkipVerify: false,
 			ServerName:         smtpHost,
