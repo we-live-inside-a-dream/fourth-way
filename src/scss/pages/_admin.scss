@@ -11,6 +11,8 @@ body.admin-login {
     --admin-card-bg: white;
     --admin-border: #ddd;
     --admin-input-bg: white;
+    --admin-input-disabled-bg: #e9ecef;
+    --admin-input-disabled-text: #6c757d;
     --admin-hover-bg: #f8f9fa;
     --admin-shadow: rgba(0, 0, 0, 0.1);
 
@@ -29,6 +31,8 @@ html[data-theme="dark"] body.admin-login {
     --admin-card-bg: #1e1e1e;
     --admin-border: #444;
     --admin-input-bg: #2d2d2d;
+    --admin-input-disabled-bg: #3a3a3a;
+    --admin-input-disabled-text: #888;
     --admin-hover-bg: #2d2d2d; // for table rows
     --admin-shadow: rgba(0, 0, 0, 0.5);
 }
@@ -178,6 +182,12 @@ body.admin-page {
             box-sizing: border-box;
             background: var(--admin-input-bg);
             color: var(--admin-text);
+
+            &:disabled {
+                background-color: var(--admin-input-disabled-bg);
+                color: var(--admin-input-disabled-text);
+                cursor: not-allowed;
+            }
         }
 
         textarea {
