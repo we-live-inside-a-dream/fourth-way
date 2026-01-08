@@ -13,10 +13,8 @@
     <header class="admin-header">
         <h1 data-i18n="admin.titles.manageBooks">Admin Portal</h1>
         <div>
-            <button id="theme-toggle"
-                style="background:none; border:1px solid white; color:white; cursor:pointer; margin-right:1rem; padding: 0.5rem 1rem; border-radius: 4px;">🌙</button>
-            <button id="lang-toggle"
-                style="background:none; border:1px solid white; color:white; cursor:pointer; margin-right:1rem; padding: 0.5rem 1rem; border-radius: 4px;">FA</button>
+            <button id="theme-toggle" class="header-control-btn">🌙</button>
+            <button id="lang-toggle" class="header-control-btn">FA</button>
             <a href="/admin/dashboard.html" data-i18n="admin.dashboard.backToDashboard">Dashboard</a>
             <a href="#" id="logout-btn" data-i18n="admin.dashboard.logout">Logout</a>
         </div>
@@ -25,10 +23,10 @@
     <div class="container container-md">
         <a href="/admin/dashboard.html" class="btn-back" data-i18n="admin.dashboard.backToDashboard">&larr; Back to
             Dashboard</a>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h2 data-i18n="admin.dashboard.manageBooks" style="margin: 0;">Manage Books</h2>
-            <a href="/admin/add-book.html" class="btn-edit" style="background-color: #28a745;"
-                data-i18n="admin.titles.addBook">Add New Book</a>
+        <div class="books-header">
+            <h2 data-i18n="admin.dashboard.manageBooks">Manage Books</h2>
+            <a href="/admin/add-book.html" class="btn-edit btn-add-book" data-i18n="admin.titles.addBook">Add New
+                Book</a>
         </div>
 
         <table>
@@ -49,51 +47,6 @@
     </div>
 
     <script type="module" src="../js/admin.js"></script>
-    <script type="module">
-        import { API_URL } from '../js/config.js';
-
-        // Auth/Logout handled by admin.js
-
-        async function loadBooks() {
-            try {
-                const res = await fetch(`${API_URL}/books`);
-                const books = await res.json();
-
-                const tbody = document.getElementById('books-table-body');
-                tbody.innerHTML = '';
-
-                books.forEach(book => {
-                    const title = book.title ? (book.title.en || 'No Title') : 'No Title';
-                    const author = book.author ? (book.author.en || 'No Author') : 'No Author';
-
-                    const row = `
-                        <tr>
-                            <td>${title}</td>
-                            <td>${author}</td>
-                            <td style="text-transform: capitalize;">${book.category}</td>
-                            <td>
-                                <a href="/admin/edit-book.html?id=${book.id}" class="btn-edit" data-i18n="admin.books.edit">Edit</a>
-                            </td>
-                        </tr>
-                   `;
-                    tbody.insertAdjacentHTML('beforeend', row);
-                });
-
-                // Apply translations to dynamic content
-                if (window.admin && window.admin.applyTranslations) {
-                    window.admin.applyTranslations();
-                }
-
-            } catch (err) {
-                console.error(err);
-                document.getElementById('books-table-body').innerHTML = '<tr><td colspan="4" style="color:red; text-align:center;" data-i18n="admin.books.loadFail">Failed to load books</td></tr>';
-            }
-        }
-
-        // Wait for admin.js to load ideally, or just run. 
-        // admin.js runs on DOMContentLoaded. We can run this then too.
-        document.addEventListener('DOMContentLoaded', loadBooks);
-    </script>
 </body>
 
 </html>

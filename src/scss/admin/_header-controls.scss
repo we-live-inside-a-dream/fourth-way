@@ -1,0 +1,88 @@
+// Admin Header Control Buttons
+// Replaces inline styles on theme-toggle and lang-toggle buttons
+
+.header-control-btn {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+// Login page variant (no border)
+body.admin-login .header-control-btn {
+    border: none;
+    font-size: 1.2rem;
+    padding: 0;
+
+    &#lang-toggle {
+        font-weight: bold;
+    }
+}
+
+// Books page header with flexbox layout
+.books-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    h2 {
+        margin: 0;
+        border: none;
+        padding: 0;
+    }
+}
+
+// Add book button (green variant)
+.btn-add-book {
+    background-color: #28a745 !important;
+
+    &:hover {
+        background-color: #218838 !important;
+    }
+}
+
+// Form message styling
+.form-message {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+// Image upload wrapper
+.image-upload-wrapper {
+    margin-top: 5px;
+}
+
+.upload-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: normal;
+}
+
+// Larger textarea for about text
+.textarea-lg {
+    height: 150px;
+}
+
+// Section divider heading
+.section-divider {
+    margin-top: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+// Images grid for about images
+.images-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}

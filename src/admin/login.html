@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login | Fourth Way Books</title>
-    <link rel="stylesheet" href="../scss/main.scss"> <!-- Assuming compiled CSS is here or served via Vite -->
-    <!-- Ideally we use the same main.js / scss build process but for simplicity standard HTML for now -->
+    <link rel="stylesheet" href="../scss/main.scss">
 </head>
 
 <body class="admin-login">
     <div class="login-card">
         <div style="text-align: right; margin-bottom: 1rem;">
-            <button id="theme-toggle"
-                style="background:none; border:none; cursor:pointer; font-size: 1.2rem; margin-right: 1rem;">🌙</button>
-            <button id="lang-toggle" style="background:none; border:none; cursor:pointer; font-weight:bold;">FA</button>
+            <button id="theme-toggle" class="header-control-btn">🌙</button>
+            <button id="lang-toggle" class="header-control-btn">FA</button>
         </div>
         <h2 data-i18n="admin.titles.login">Admin Portal</h2>
         <div id="error-msg" class="error-msg"></div>
@@ -32,37 +30,6 @@
     </div>
 
     <script type="module" src="../js/admin.js"></script>
-    <script type="module">
-        import { API_URL } from '../js/config.js';
-
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value.toLowerCase();
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('error-msg');
-
-            try {
-                const response = await fetch(`${API_URL}/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    localStorage.setItem('adminToken', data.token);
-                    window.location.href = '/admin/dashboard.html'; // Redirect to dashboard
-                } else {
-                    errorDiv.textContent = 'Invalid credentials';
-                    errorDiv.style.display = 'block';
-                }
-            } catch (err) {
-                console.error(err);
-                errorDiv.textContent = 'Server error';
-                errorDiv.style.display = 'block';
-            }
-        });
-    </script>
 </body>
 
 </html>

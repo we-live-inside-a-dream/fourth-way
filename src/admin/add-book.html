@@ -4,19 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Book - Admin | Fourth Way Books</title>
+    <title>Add Book - Admin | Fourth Way Books</title>
     <link rel="stylesheet" href="../scss/main.scss">
 
 </head>
 
 <body class="admin-page">
     <header class="admin-header">
-        <h1 data-i18n="admin.titles.editBook">Admin Portal</h1>
+        <h1 data-i18n="admin.titles.addBook">Admin Portal</h1>
         <div>
-            <button id="theme-toggle"
-                style="background:none; border:1px solid white; color:white; cursor:pointer; margin-right:1rem; padding: 0.5rem 1rem; border-radius: 4px;">🌙</button>
-            <button id="lang-toggle"
-                style="background:none; border:1px solid white; color:white; cursor:pointer; margin-right:1rem; padding: 0.5rem 1rem; border-radius: 4px;">FA</button>
+            <button id="theme-toggle" class="header-control-btn">🌙</button>
+            <button id="lang-toggle" class="header-control-btn">FA</button>
             <a href="/admin/dashboard.html" data-i18n="admin.dashboard.backToDashboard">Dashboard</a>
             <a href="#" id="logout-btn" data-i18n="admin.dashboard.logout">Logout</a>
         </div>
@@ -25,7 +23,7 @@
     <div class="container container-sm">
         <a href="/admin/books.html" class="btn-back" data-i18n="admin.dashboard.backToBooks">&larr; Back to Books</a>
         <h2 data-i18n="admin.titles.addBook">Add New Book</h2>
-        <div id="msg" style="margin-bottom: 1rem; font-weight: bold;"></div>
+        <div id="msg" class="form-message"></div>
 
         <form id="book-form">
             <!-- Form fields remain the same -->
@@ -40,16 +38,12 @@
             <div class="form-group">
                 <label data-i18n="admin.books.image">Image URL</label>
                 <input type="text" name="image" id="image">
-                <div style="margin-top: 5px;">
-                    <label style="font-size: 0.9rem; color: #666; font-weight: normal;">Or upload an image:</label>
+                <div class="image-upload-wrapper">
+                    <label class="upload-label">Or upload an image:</label>
                     <input type="file" id="image-upload" accept="image/*">
                 </div>
             </div>
 
-            <!-- <div class="form-group">
-                <label data-i18n="admin.books.link">Buy Link / Details Link (General)</label>
-                <input type="text" name="link">
-            </div> -->
             <div class="form-group">
                 <label>Payhip Link</label>
                 <input type="text" name="payhipLink" placeholder="Optional">
@@ -74,7 +68,7 @@
                 <label data-i18n="admin.books.featured">Featured</label>
                 <select name="featured">
                     <option value="true">Yes</option>
-                    <option value="false">No" selected>No</option>
+                    <option value="false" selected>No</option>
                 </select>
             </div>
 
@@ -96,10 +90,6 @@
                     <label data-i18n="admin.books.descEn">Description</label>
                     <textarea name="description.en"></textarea>
                 </div>
-                <!-- <div class="form-group">
-                    <label data-i18n="admin.books.btnTextEn">Button Text</label>
-                    <input type="text" name="btnText.en">
-                </div> -->
             </div>
 
             <div class="lang-section">
@@ -120,10 +110,6 @@
                     <label data-i18n="admin.books.descFa">Description (FA)</label>
                     <textarea name="description.fa" dir="rtl"></textarea>
                 </div>
-                <!-- <div class="form-group">
-                    <label data-i18n="admin.books.btnTextFa">Button Text (FA)</label>
-                    <input type="text" name="btnText.fa" dir="rtl">
-                </div> -->
             </div>
 
             <button type="submit" class="btn-submit" data-i18n="admin.common.add">Add Book</button>
@@ -131,70 +117,6 @@
     </div>
 
     <script type="module" src="../js/admin.js"></script>
-    <script type="module">
-        import { API_URL } from '../js/config.js';
-
-        // Initialize Upload
-        const checkAdmin = setInterval(() => {
-            if (window.admin && window.admin.setupImageUpload) {
-                window.admin.setupImageUpload('image-upload', 'image');
-                clearInterval(checkAdmin);
-            }
-        }, 100);
-
-        // Auth/Logout handled by admin.js
-
-        const form = document.getElementById('book-form');
-
-        // Submit
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const saveBtn = form.querySelector('.btn-submit');
-            const originalText = saveBtn.textContent;
-            saveBtn.textContent = 'Saving...';
-            saveBtn.disabled = true;
-
-            const formData = new FormData(form);
-            const getVal = (n) => formData.get(n);
-
-            const payload = {
-                // No ID for create
-                category: getVal('category'),
-                image: getVal('image'),
-                payhipLink: getVal('payhipLink'),
-                amazonLink: getVal('amazonLink'),
-                appleLink: getVal('appleLink'),
-                featured: getVal('featured') === 'true',
-                title: { en: getVal('title.en'), fa: getVal('title.fa') },
-                author: { en: getVal('author.en'), fa: getVal('author.fa') },
-                translator: { en: getVal('translator.en'), fa: getVal('translator.fa') },
-                description: { en: getVal('description.en'), fa: getVal('description.fa') },
-                btnText: { en: getVal('btnText.en'), fa: getVal('btnText.fa') },
-            };
-
-            try {
-                const res = await fetch(`${API_URL}/books`, {
-                    method: 'POST', // Changed to POST
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (res.ok) {
-                    window.admin.showToast('Book created successfully!', 'success');
-                    // Optional: clear form or redirect
-                    setTimeout(() => window.location.href = '/admin/books.html', 1500);
-                } else {
-                    window.admin.showToast('Failed to create book.', 'error');
-                }
-            } catch (err) {
-                window.admin.showToast('Error creating book.', 'error');
-                console.error(err);
-            } finally {
-                saveBtn.textContent = originalText;
-                saveBtn.disabled = false;
-            }
-        });
-    </script>
 </body>
 
 </html>
