@@ -11,57 +11,6 @@ inject();
 $(function () {
     console.log('Fourth Way Books - Initialized');
 
-    // Auto-Hiding Navbar Logic
-    const $header = $('header').not('.admin-header');
-    let lastScrollTop = 0;
-    const scrollThreshold = 10;
-    const topZoneHeight = 50;
-
-    // Initial check (start hidden if at top)
-    if (window.scrollY <= scrollThreshold) {
-        $header.addClass('navbar-hidden');
-    }
-
-    // Scroll Handler
-    $(window).on('scroll', function () {
-        const scrollTop = $(this).scrollTop();
-
-        // If scrolled down past threshold, show navbar
-        if (scrollTop > scrollThreshold) {
-            $header.removeClass('navbar-hidden');
-        } else {
-            // If at top, hide it (unless hovered - handled by mousemove/hover)
-            if (!$header.is(':hover')) {
-                $header.addClass('navbar-hidden');
-            }
-        }
-        lastScrollTop = scrollTop;
-    });
-
-    // Mouse Move Handler (to reveal when at top)
-    $(document).on('mousemove', function (e) {
-        if (window.scrollY <= scrollThreshold) {
-            if (e.clientY < topZoneHeight) {
-                $header.removeClass('navbar-hidden');
-            } else if (!$header.is(':hover') && !$header.find('.active').length) {
-                // Hide if moved away from top zone and not hovering header
-                // Added check for active menu to prevent hiding when interacting with menu
-                if (!$('.nav-links').hasClass('active')) {
-                    $header.addClass('navbar-hidden');
-                }
-            }
-        }
-    });
-
-    // Ensure header stays visible when hovering it
-    $header.on('mouseenter', function () {
-        $header.removeClass('navbar-hidden');
-    });
-
-    // Mobile Menu Safety: Keep visible if menu is open
-    // (This is partly handled in the existing menu toggle logic, but good to reinforce)
-
-
     // Theme Handling
     const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(currentTheme);
