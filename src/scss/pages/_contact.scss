@@ -1,0 +1,36 @@
+// Contact Page Styles
+
+.contact-section {
+    padding: 4rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        background-color: var(--color-white);
+        color: var(--color-primary);
+    }
+}
+
+// Contact status message
+.contact-status {
+    margin-top: 1rem;
+    font-weight: bold;
+    display: none;
+}
